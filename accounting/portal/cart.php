@@ -146,6 +146,13 @@ if (!empty($_SESSION['portal_last_order_id'])) {
         let cart = JSON.parse(localStorage.getItem('portal_cart')) || [];
         let currentEditIndex = -1;
         
+        // Clear cart on first load to ensure fresh data from products page
+        if (!sessionStorage.getItem('cart_cleared')) {
+            localStorage.removeItem('portal_cart');
+            cart = [];
+            sessionStorage.setItem('cart_cleared', '1');
+        }
+        
         <?php if (!empty($_SESSION['portal_last_order_id'])): ?>
         let cartInitialized = sessionStorage.getItem('cart_initialized');
         if (cart.length === 0 && !cartInitialized) {
@@ -173,8 +180,8 @@ if (!empty($_SESSION['portal_last_order_id'])) {
                 let discPercent = parseFloat(item.disc_percent || 0);
                 let taxPercent = parseFloat(item.tax_percent || 0);
                 
-                // Check if price exists (unit_price > 0)
-                let hasPrice = priceExcl > 0;
+                // Check if price exists - use has_price flag or check if unit_price > 0
+                let hasPrice = item.has_price !== false && priceExcl > 0;
                 
                 let discAmt = priceExcl * (discPercent / 100);
                 let nettExcl = priceExcl - discAmt;
