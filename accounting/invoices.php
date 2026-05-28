@@ -185,7 +185,7 @@ $routes = $pdo->query("SELECT id, route_name FROM acc_routes ORDER BY route_name
         .action-btn { background: #28a745; color: white; border: none; padding: 5px 10px; cursor: pointer; font-size: 12px; display: flex; align-items: center; justify-content: space-between; min-width: 70px; }
         .action-btn::after { content: '▼'; font-size: 10px; margin-left: 5px; }
         .action-btn:hover { background: #218838; }
-        .action-menu { display: none; position: absolute; right: 0; background-color: #fff; min-width: 120px; box-shadow: 0px 4px 8px rgba(0,0,0,0.1); z-index: 10; border: 1px solid #ddd; }
+        .action-menu { display: none; position: fixed; background-color: #fff; min-width: 120px; box-shadow: 0px 4px 8px rgba(0,0,0,0.1); z-index: 1000; border: 1px solid #ddd; }
         .action-menu a, .action-menu button { color: #555; padding: 8px 12px; text-decoration: none; display: block; font-size: 12px; background: none; border: none; text-align: left; width: 100%; cursor: pointer; }
         .action-menu a:hover, .action-menu button:hover { background-color: #f8f9fa; color: #000; }
         .action-dropdown:hover .action-menu { display: block; }
@@ -416,6 +416,18 @@ $routes = $pdo->query("SELECT id, route_name FROM acc_routes ORDER BY route_name
             if(!e.target.closest('.badge')) {
                 document.querySelectorAll('.status-dropdown').forEach(d => d.style.display = 'none');
             }
+        });
+
+        // Position action menus properly
+        document.querySelectorAll('.action-dropdown').forEach(dropdown => {
+            dropdown.addEventListener('click', function(e) {
+                if (e.target.closest('.action-btn')) {
+                    let menu = this.querySelector('.action-menu');
+                    let rect = this.getBoundingClientRect();
+                    menu.style.top = (rect.bottom + window.scrollY) + 'px';
+                    menu.style.left = (rect.left + window.scrollX - 50) + 'px';
+                }
+            });
         });
     </script>
 </body>
