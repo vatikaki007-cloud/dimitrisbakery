@@ -7,7 +7,6 @@
 
 require_once __DIR__ . '/config.php';
 if (session_status() === PHP_SESSION_NONE) { session_start(); }
-require_once __DIR__ . '/navbar.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -16,7 +15,7 @@ require_once __DIR__ . '/PHPMailer/Exception.php';
 require_once __DIR__ . '/PHPMailer/PHPMailer.php';
 require_once __DIR__ . '/PHPMailer/SMTP.php';
 
-// AJAX Save Handler
+// AJAX Save Handler - MUST be before navbar include
 if (isset($_GET['ajax_save'])) {
     header('Content-Type: application/json');
     $pdo = get_db();
@@ -223,6 +222,9 @@ if (isset($_GET['ajax_save'])) {
     }
     exit;
 }
+
+// Include navbar after AJAX handler
+require_once __DIR__ . '/navbar.php';
 
 // 1. Move POST handling to the very top to allow clean redirects
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
