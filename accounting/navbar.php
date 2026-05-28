@@ -69,7 +69,7 @@ $user_zoom = (int)($stmt->fetchColumn() ?: 100);
 
     /* Hamburger menu */
     .hamburger { display: none; background: none; border: none; color: white; font-size: 24px; cursor: pointer; padding: 0; width: 32px; height: 32px; align-items: center; justify-content: center; }
-    .nav-menu { display: flex; align-items: center; }
+    .nav-menu { display: flex; align-items: center; gap: 5px; flex: 1; }
 
     /* Mobile Responsive */
     @media (max-width: 1024px) {
@@ -79,15 +79,16 @@ $user_zoom = (int)($stmt->fetchColumn() ?: 100);
     }
 
     @media (max-width: 768px) {
-        .navbar { padding: 10px 12px; }
-        .hamburger { display: flex; }
-        .nav-menu { position: absolute; top: 100%; left: 0; right: 0; background: #004494; flex-direction: column; align-items: stretch; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
-        .nav-menu.active { max-height: 500px; }
+        .navbar { padding: 10px 12px; position: relative; }
+        .hamburger { display: flex; order: 2; }
+        .brand { order: 1; }
+        .nav-menu { position: fixed; top: 50px; left: 0; right: 0; background: #004494; flex-direction: column; align-items: stretch; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; z-index: 999; }
+        .nav-menu.active { max-height: 600px; overflow-y: auto; }
         .nav-menu a { margin: 0; padding: 12px 15px; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 14px; }
         .nav-menu a:hover { background: rgba(255,255,255,0.1); text-decoration: none; }
         .nav-menu .user-info { margin: 0; padding: 12px 15px; border-bottom: 1px solid rgba(255,255,255,0.1); }
         .nav-menu .btn-logout { margin: 0; padding: 12px 15px; border-radius: 0; }
-        .nav-menu .zoom-controls { margin: 0; padding: 12px 15px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .nav-menu .zoom-controls { margin: 0; padding: 12px 15px; border-bottom: 1px solid rgba(255,255,255,0.1); justify-content: flex-start; }
         .navbar a { margin-right: 0; }
         .user-info { display: none; }
         .zoom-controls { display: none; }
@@ -121,6 +122,15 @@ $user_zoom = (int)($stmt->fetchColumn() ?: 100);
             link.addEventListener('click', function() {
                 document.getElementById('navMenu').classList.remove('active');
             });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            var menu = document.getElementById('navMenu');
+            var hamburger = document.querySelector('.hamburger');
+            if (!menu.contains(event.target) && !hamburger.contains(event.target)) {
+                menu.classList.remove('active');
+            }
         });
     });
 </script>
