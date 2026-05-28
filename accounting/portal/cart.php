@@ -169,7 +169,7 @@ if (!empty($_SESSION['portal_last_order_id'])) {
             
             cart.forEach((item, index) => {
                 let qty = parseInt(item.quantity);
-                let priceExcl = parseFloat(item.unit_price);
+                let priceExcl = parseFloat(item.unit_price || 0);
                 let discPercent = parseFloat(item.disc_percent || 0);
                 let taxPercent = parseFloat(item.tax_percent || 0);
                 

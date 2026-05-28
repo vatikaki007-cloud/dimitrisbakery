@@ -39,8 +39,12 @@ foreach ($products as &$p) {
         $p['unit_price'] = $last_sale['unit_price'];
         $p['tax_percent'] = $last_sale['tax_percent'];
         $p['disc_percent'] = $last_sale['disc_percent'];
+        $p['has_price'] = true;
     } else {
+        $p['unit_price'] = 0;
+        $p['tax_percent'] = 0;
         $p['disc_percent'] = 0;
+        $p['has_price'] = false;
     }
 }
 unset($p); // Fix PHP reference bug!
@@ -99,7 +103,7 @@ unset($p); // Fix PHP reference bug!
             $price_excl = $p['unit_price'];
             $disc_amt = $price_excl * ($p['disc_percent'] / 100);
             $nett_excl = $price_excl - $disc_amt;
-            // Simplified display: just show nett price excl tax
+            $has_price = $p['has_price'] ?? false;
         ?>
             <div class="product-card">
                 <?php if (!empty($p['photo'])): ?>
@@ -113,6 +117,11 @@ unset($p); // Fix PHP reference bug!
                     <?php if (!empty($p['portal_description'])): ?>
                         <div class="product-desc"><?= htmlspecialchars($p['portal_description']) ?></div>
                     <?php endif; ?>
+                    <?php if ($has_price): ?>
+                        <div class="product-price">R <?= number_format($nett_excl, 2) ?> / <?= htmlspecialchars($p['unit']) ?></div>
+                    <?php else: ?>
+                        <div class="product-price" style="color: #ff9800; font-size: 13px;">Custom Quote Required<br>We'll contact you with pricing</div>
+                    <?php endif; ?>
                 </div>
 
                 <div class="add-controls">
@@ -124,6 +133,7 @@ unset($p); // Fix PHP reference bug!
                         'tax_percent' => $p['tax_percent'],
                         'disc_percent' => $p['disc_percent'],
                         'nett_price' => $nett_excl,
+                        'has_price' => $has_price
                         'photo' => $p['photo']
                     ])) ?>)">Add</button>
                 </div>
