@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confectioner | Custom Cakes & Sweet Treats | Dimitri's Bakery</title>
+    <meta name="description" content="Explore our wide range of custom cakes and sweet treats. From wedding and birthday cakes to delicious confectionery, Dimitri's Bakery creates perfect desserts for every occasion in Cape Town.">
+    <meta name="keywords" content="wedding cakes Cape Town, birthday cakes Parow, custom cakes, sweet treats, confectionery, Dimitri's Bakery cakes">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dimitrisbakery.co.za/confectioner.html">
+    <meta property="og:title" content="Custom Cakes & Confectionery | Dimitri's Bakery">
+    <meta property="og:description" content="Delicious custom cakes and sweet treats for all your special moments. Wedding cakes, birthday cakes, and more.">
+    <meta property="og:image" content="https://dimitrisbakery.co.za/index_images/logo.png">
+
+    <link rel="stylesheet" href="confectioner_css/confectioner.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Source+Sans+3:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="index_images/logo.png">
+</head>
+<body>
+
+<!-- Header (Consistent with Master Template) -->
+<div id="global-nav"></div>
+<script>
+  fetch('/global_nav.html')
+    .then(r => r.text())
+    .then(html => {
+      document.getElementById('global-nav').innerHTML = html;
+    })
+    .catch(err => console.error('Failed to load global nav:', err));
+</script>
+
+<main>
+    <!-- CONFECTIONER HERO -->
+    <section class="conf-hero" style="background-image: url('confectioner_images/conf1.jpg');">
+        <div class="conf-hero-overlay">
+            <!-- Decorative Badge for the Title -->
+            <div class="conf-title-badge">
+                <span class="conf-subtitle">Artisan Creations</span>
+                <h1 class="conf-page-title">Confectioner</h1>
+                <div class="conf-divider"></div>
+                <p class="conf-desc">Cakes & Treats for your special moments</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- CAKE CATEGORY GRID -->
+    <section class="container conf-grid-section">
+        <div class="conf-grid">
+            <!-- Wedding Cakes -->
+            <div class="conf-item">
+                <img src="confectioner_images/weddingcakes.jpg" alt="Custom Wedding Cakes by Dimitri's Bakery Cape Town" loading="lazy">
+                <h3>Wedding Cakes</h3>
+                <a href="confectioner/wedding_cakes/wedding_cakes.html" class="btn-category">View Gallery</a>
+            </div>
+            <!-- Birthday Cakes -->
+            <div class="conf-item">
+                <img src="confectioner_images/birthdaycakes.jpg" alt="Personalized Birthday Cakes Cape Town" loading="lazy">
+                <h3>Birthday Cakes</h3>
+                <a href="confectioner/birthday_cakes/birthday_cakes.html" class="btn-category">View Gallery</a>
+            </div>
+            <!-- Any Occasion -->
+            <div class="conf-item">
+                <img src="confectioner_images/anyoccasioncakes.jpg" alt="Special Occasion Cakes Cape Town" loading="lazy">
+                <h3>Any Occasion</h3>
+                <a href="confectioner/any_occasion/any_occasion.html" class="btn-category">View Gallery</a>
+            </div>
+            <!-- Sweet Treats -->
+            <div class="conf-item">
+                <img src="confectioner_images/sweettreats.jpg" alt="Delicious Sweet Treats and Confectionery" loading="lazy">
+                <a href="confectioner/sweet_treats/sweet_treats.html" class="btn-category">Sweet Treats</a>
+            </div>
+        </div>
+        <div class="order-button-container" style="text-align: center; margin-top: 40px; margin-bottom: 20px;">
+            <a href="https://wa.me/27799815410?text=I'd%20like%20to%20place%20an%20order" target="_blank" class="btn-primary" style="display: inline-block; background-color: #007bff; color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; transition: background-color 0.3s;">Place an Order</a>
+        </div>
+    </section>
+</main>
+
+<!-- Footer (Consistent) -->
+<footer class="main-footer">
+    <div class="container footer-grid">
+        <!-- Column 1: Quick About & Social -->
+        <div class="footer-col">
+            <img src="index_images/logo.png" alt="Dimitri's Bakery" class="footer-logo">
+            <p>Quality confectionery and turnkey catering services for every occasion. Family owned and run since the beginning.</p>
+            <div class="footer-socials">
+                <a href="https://www.facebook.com/dimitrisbakery" target="_blank">Facebook</a>
+                <a href="https://wa.me/27799815410" target="_blank">WhatsApp</a>
+                <a href="#">Instagram</a>
+            </div>
+        </div>
+
+        <!-- Column 2: Quick Links -->
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="weekley_menu/weekly_menu.html">Weekly Menu's</a></li>
+                <li><a href="confectioner.html">Confectionery</a></li>
+                <li><a href="catering/catering.html">Catering</a></li>
+            </ul>
+        </div>
+
+        <!-- Column 3: Contact Info (The most important part) -->
+        <div class="footer-col">
+            <h4>Get In Touch</h4>
+            <p><strong>Phone:</strong> 079 981 5410</p>
+            <p><strong>Email:</strong> info@dimitrisbakery.co.za</p>
+            <p><strong>Location:</strong> Cape Town, South Africa</p>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <div class="container footer-bottom-flex">
+            <p>Copyright © 2026 | Dimitri's Bakery</p>
+            <div class="legal-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

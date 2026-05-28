@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dimitri's Bakery | Quality Confectionery & Catering in Cape Town</title>
+    <meta name="description" content="Dimitri's Bakery in Parow, Cape Town. Specializing in high-quality confectionery, custom cakes (wedding, birthday), and professional catering services. Family-owned and operated.">
+    <meta name="keywords" content="bakery Cape Town, custom cakes Parow, catering services Cape Town, wedding cakes, birthday cakes, confectionery, home cooked meals">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dimitrisbakery.co.za/">
+    <meta property="og:title" content="Dimitri's Bakery | Confectionery & Catering">
+    <meta property="og:description" content="Quality confectionery and turnkey catering services in Cape Town. Family owned and run since the beginning.">
+    <meta property="og:image" content="https://dimitrisbakery.co.za/index_images/logo.png">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Bakery",
+      "name": "Dimitri's Bakery",
+      "image": "https://dimitrisbakery.co.za/index_images/logo.png",
+      "@id": "https://dimitrisbakery.co.za/",
+      "url": "https://dimitrisbakery.co.za/",
+      "telephone": "0798815410",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Parow",
+        "addressLocality": "Cape Town",
+        "addressRegion": "Western Cape",
+        "postalCode": "7500",
+        "addressCountry": "ZA"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -33.9067,
+        "longitude": 18.5808
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday"
+        ],
+        "opens": "08:00",
+        "closes": "17:00"
+      },
+      "sameAs": "https://www.facebook.com/dimitrisbakery"
+    }
+    </script>
+
+    <link rel="stylesheet" href="index_css/index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Source+Sans+3:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/jpeg" href="index_images/logo.png">
+</head>
+<body>
+
+<div id="global-nav"></div>
+<script>
+  fetch('/global_nav.html')
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById('global-nav').innerHTML = html;
+    })
+    .catch(err => console.error('Failed to load global nav:', err));
+</script>
+
+<main>
+<section class="hero">
+    <div class="hero-overlay">
+        <div class="container">
+            <!-- New styling box for readability -->
+            <div class="hero-box">
+                <h1 class="hero-title">Dimitri's Bakery</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <section class="welcome-section container">
+        <h2>Welcome to Dimitri's</h2>
+        <p>From artisan confectioneries to full-scale catering for your special events, we bring quality and taste to every plate.</p>
+    </section>
+</main>
+<section class="testimonials">
+    <div class="container">
+        <h2 class="section-title">Happy Clients</h2>
+        <p class="section-subtitle">Don't take our word for it, see what our customers say!</p>
+        
+        <div class="testimonial-grid">
+            <!-- Card 1 -->
+            <div class="testimonial-card">
+                <p>"The value they put into their clients. I had an event the 1st of March and they constantly communicate to us... Highly recommended."</p>
+                <div class="client-name">Beatrice Hendricks</div>
+                <div class="stars">★★★★★</div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="testimonial-card">
+                <p>"I ordered my daughter's confirmation cake... Wow what a beautiful cake, and the texture was Divine. Well done."</p>
+                <div class="client-name">Sharon Wilson</div>
+                <div class="stars">★★★★★</div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="testimonial-card">
+                <p>"Thanks to the staff of Dimitri's Bakery for doing the catering for the function... The food was Awesome and enjoyed by everyone."</p>
+                <div class="client-name">Jerome Damon</div>
+                <div class="stars">★★★★★</div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="testimonial-card">
+                <p>"Wow wow wow! Thank you for this beautiful creation for my Daughter's wedding... The passion & talent shows."</p>
+                <div class="client-name">Lesley Adriaanzen</div>
+                <div class="stars">★★★★★</div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="testimonial-card">
+                <p>"Anna did the catering for my mom's memorial service today. The portions were generous, the food really tasty and well presented."</p>
+                <div class="client-name">Elna Barker</div>
+                <div class="stars">★★★★★</div>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="testimonial-card">
+                <p>"Just want to give a huge thanks for the cake... mostly thee cake was admired. Hope your business flourish from strength to strength."</p>
+                <div class="client-name">T'anite January</div>
+                <div class="stars">★★★★★</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="quote-banner" style="background-image: url('index_images/index2.png');">
+    <div class="container quote-container">
+        <!-- Top Centered Quote -->
+        <div class="quote-top">
+            <h2>“You learn a lot about someone when you share a meal together”</h2>
+        </div>
+
+        <!-- Bottom Right Quote -->
+        <div class="quote-bottom">
+            <p>Love is the food of life,<br>travel is the dessert.</p>
+        </div>
+    </div>
+</section>
+
+<section class="about-section">
+    <div class="container about-grid">
+        <!-- Left Side: Text -->
+        <div class="about-text">
+            <span class="sub-label">About Dimitri's Bakery</span>
+            <h2>What Makes Us Stand Out?</h2>
+            <p>Dimitri's Bakery is a family owned and run business.</p>
+            <p>Founded by the late Dimitri and now run by Anna, her son, Dimitri and aided by Anna's mom. Dimitri's Bakery started out just doing rolls, then branched into pastries.</p>
+            <p>Now Dimitri's is a full turnkey confectioner and bakery – doing everything from cakes to full scale catering.</p>
+        </div>
+
+        <!-- Right Side: Graphic/Logo -->
+        <div class="about-graphic">
+            <!-- Replace logo-large.jpg with the actual graphic name you saved -->
+            <img src="index_images/logo.png" alt="Dimitri's Confectioner Bakery Graphic">
+        </div>
+    </div>
+</section>
+
+<section class="menu-cta" style="background-image: url('index_images/index3.png');">
+    <div class="container menu-cta-content">
+        <span class="cta-sub">Weekly Menu's</span>
+        <h2 class="cta-title">Home Cooked Meals</h2>
+        <p class="cta-text">The hustle and bustle of the work week getting you down? No idea what to make for supper?</p>
+        <p class="cta-text">Let Dimitri's Bakery cook your meals for you!</p>
+        
+        <div class="cta-buttons">
+            <a href="weekley_menu/weekly_menu.html" class="btn-filled">View Our Menu's</a>
+            <a href="https://wa.me/27799815410?text=I'd%20like%20to%20place%20an%20order" target="_blank" class="btn-outline-white">Order Now!</a>
+        </div>
+    </div>
+</section>
+
+
+<footer class="main-footer">
+    <div class="container footer-grid">
+        <!-- Column 1: Quick About & Social -->
+        <div class="footer-col">
+            <img src="index_images/logo.png" alt="Dimitri's Bakery" class="footer-logo">
+            <p>Quality confectionery and turnkey catering services for every occasion. Family owned and run since the beginning.</p>
+            <div class="footer-socials">
+                <a href="https://www.facebook.com/dimitrisbakery" target="_blank">Facebook</a>
+                <a href="https://wa.me/27799815410" target="_blank">WhatsApp</a>
+                <a href="#">Instagram</a>
+            </div>
+        </div>
+
+        <!-- Column 2: Quick Links -->
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="weekley_menu/weekly_menu.html">Weekly Menu's</a></li>
+                <li><a href="confectioner.html">Confectionery</a></li>
+                <li><a href="catering/catering.html">Catering</a></li>
+            </ul>
+        </div>
+
+        <!-- Column 3: Contact Info (The most important part) -->
+        <div class="footer-col">
+            <h4>Get In Touch</h4>
+            <p><strong>Phone:</strong> 079 981 5410</p>
+            <p><strong>Email:</strong> info@dimitrisbakery.co.za</p>
+            <p><strong>Location:</strong> Cape Town, South Africa</p>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <div class="container footer-bottom-flex">
+            <p>Copyright © 2026 | Dimitri's Bakery</p>
+            <div class="legal-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+</body>
+</html>

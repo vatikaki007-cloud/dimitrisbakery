@@ -1,0 +1,223 @@
+Inventory Code,Inventory Description,Exclusive Selling Price 1,Exclusive Selling Price 2,Exclusive Selling Price 3,Inclusive Selling Price 1,Inclusive Selling Price 2,Inclusive Selling Price 3
+"125            ","COUNTRY CROP                            ",0,0,0,0,0,0
+"1458           ","CAKE FLOUR 125KG                       ",102.91,0,0,102.91,0,0
+"2491           ","ROAST VEG                               ",22,0,0,22,0,0
+"445            ","MIXED CHUNKS                            ",22,0,0,22,0,0
+"571            ","POTJIEKOS                               ",22,0,0,22,0,0
+"ATS            ","APPEL TART                              ",7,7,7,8.05,8.05,8.05
+"BA             ","BAQUETTE                                ",5.5,0,0,6.33,0,0
+"BB             ","BROWN BREAD                             ",9,9,9,9,9,9
+"BBBAR          ","BROWN BREAD                             ",5.6,0,0,5.6,0,0
+"BBSUN          ","BROWN BREAD                             ",6.5,0,0,6.5,0,0
+"BIS            ","BISCUITS                                ",7,0,0,7,0,0
+"BLACK          ","CHARCOAL BUN                            ",3.1,0,0,3.57,0,0
+"BLACKB         ","CHARCOAL BUN                            ",5.5,0,0,6.33,0,0
+"BRIO           ","BRIOCHE ROLL                            ",.95,.95,.95,1.09,1.09,1.09
+"BRIOC          ","BRIOCHE ROLL                            ",5.4,1.2,1.2,6.21,1.38,1.38
+"BRIOCHD        ","BRIOCHE HOT DOG                         ",4.9,0,0,4.9,0,0
+"BRIOCHEE       ","BRIOCHE ROLL                            ",4.9,0,0,4.9,0,0
+"BRIOHD         ","BRIOCHE HOT DOG                         ",2.75,0,0,3.16,0,0
+"BRIOPAARL      ","BRIOCHE ROLL                            ",3.8,0,0,4.37,0,0
+"CABURG         ","LARGE BURGERS                           ",11.3,0,0,13,0,0
+"CAGATSB        ","LARGE GATSBY                            ",6.1,0,0,7.02,0,0
+"CALBURG        ","BURGERS                                 ",11.3,0,0,13,0,0
+"CALGAT         ","GATSBY                                  ",6.1,0,0,7.02,0,0
+"CALGAW         ","GATSBY                                  ",6.9,0,0,7.94,0,0
+"CALWC          ","SEEDED BURGERS                          ",18.5,0,0,21.28,0,0
+"CALWPR         ","PORTUGUESE ROLLS                        ",12.9,0,0,14.84,0,0
+"CIA            ","CIABATTA SQUARE                         ",4.14,0,0,4.76,0,0
+"CIABS          ","CIABATTA                                ",4.14,0,0,4.76,0,0
+"CO             ","COPENHAGENS                             ",5.5,4.1,4.1,6.33,4.72,4.72
+"CRCH           ","CROISSANTS CHEESE                       ",9.5,0,0,10.93,0,0
+"CRCOO          ","CROISSANTS CHOCOLATE                    ",9.5,0,0,10.93,0,0
+"CRUMBS         ","BREAD CRUMBS                            ",14.9,0,0,17.14,0,0
+"CTBRIOCHE      ","BRIOCHE ROLLS                           ",1.95,0,0,2.24,0,0
+"CTS            ","COCKTAILS                               ",12,12,12,13.8,13.8,13.8
+"D              ","DOUGH                                   ",11.7,10.9,10.9,13.46,12.54,12.54
+"DANCUS         ","DANISH CUSTARD                          ",3,0,0,3.45,0,0
+"DANJAM         ","DANISH JAM                              ",2.95,0,0,3.39,0,0
+"DC             ","DOUGHNUTS CREAM                         ",5.5,3.5,3.2,6.33,4.03,3.68
+"DCCUST         ","CUSTARD DOUGHNUT                        ",5.5,0,0,6.33,0,0
+"DELGL          ","GATSBY                                  ",8,0,0,8,0,0
+"DELHD          ","HOT DOGS                                ",16,0,0,16,0,0
+"DELLBS         ","LARGE BURGER ROLLS                      ",16,0,0,16,0,0
+"DOU            ","DOUGHNUTS                               ",2.1,1.5,1.5,2.42,1.73,1.73
+"E              ","ECLAIRS                                 ",7,4.55,4.55,8.05,5.23,5.23
+"FHGL           ","GATSBY                                  ",8.5,0,0,8.5,0,0
+"FHJUMB         ","JUMBO                                   ",17.5,0,0,17.5,0,0
+"FIBURG         ","LARGE BURGERS                           ",13.5,0,0,15.53,0,0
+"FIGATS         ","LARGE GATSBY                            ",6.3,0,0,7.25,0,0
+"FIWB           ","WHITE BREAD                             ",8,0,0,9.2,0,0
+"FL             ","FOOTLONGS                               ",6.3,5.5,5.5,7.25,6.33,6.33
+"FRYSEED        ","PLAIN BURGERS                           ",19.2,0,0,22.08,0,0
+"FRYVET         ","VETKOEK                                 ",4.9,0,0,5.64,0,0
+"FRYVETK        ","VETKOEK                                 ",4.9,0,0,5.64,0,0
+"GBDEL          ","LARGE GATSBY                            ",5.22,0,0,6,0,0
+"GFBURGER       ","LARGE BURGERS                           ",19.3,18,18,19.3,18,18
+"GFGL           ","GATSBY LARGE                            ",9.3,8,8,9.3,8,8
+"GFJUMB         ","JUMBO ROLLS                             ",23.3,22,22,23.3,22,22
+"GFWB           ","WHITE BREAD                             ",9.5,0,0,9.5,0,0
+"GL             ","GATSBY LARGE                            ",9.5,7.3,7.3,10.93,8.4,8.4
+"GL2            ","GATSBY SMALL                            ",5.7,0,0,6.56,0,0
+"GL3            ","GATSBY X-LARGE                          ",5.41,0,0,6.22,0,0
+"GL4            ","GATSBY LARGE                            ",6.2,0,6.9,7.13,0,7.94
+"GLAM           ","GATSBY                                  ",8.8,0,0,8.8,0,0
+"GLDB           ","GATSBY LARGE                            ",9,0,0,10.35,0,0
+"GLG            ","LARGE GATSBY                            ",5,0,0,5,0,0
+"GLGD           ","GATSBY                                  ",7.5,6.5,6.5,7.5,6.5,6.5
+"GLGW           ","GATSBY                                  ",5.9,0,0,6.79,0,0
+"GLI            ","GATSBY LARGE                            ",4.93,6.9,0,5.67,7.94,0
+"GLKR           ","GATSBY LARGE                            ",9,0,0,10.35,0,0
+"GLPAR          ","GATSBY LARGE                            ",7,0,0,7,0,0
+"GSFR           ","SUBS                                    ",5.7,0,0,6.56,0,0
+"GWGL           ","GATSBY                                  ",6.3,0,0,7.25,0,0
+"GWLBS          ","LARGE BURGERS                           ",17.5,0,0,20.13,0,0
+"GWPORT         ","PORTUGUSE ROLLS                         ",18.5,0,0,21.28,0,0
+"HAM            ","HAMBURGER                               ",11.4,7.9,11.4,13.11,9.09,13.11
+"HD             ","HOTDOG ROLLS                            ",18.9,7.9,15.9,21.74,9.09,18.29
+"HDFR           ","HOT DOG                                 ",11.5,0,0,13.23,0,0
+"HDG            ","HOTDOG ROLL                             ",0,0,0,0,0,0
+"HDGD           ","HOT DOGS                                ",7.5,6.5,6.5,7.5,6.5,6.5
+"HDKR           ","HOT DOG                                 ",19.7,0,0,22.66,0,0
+"HDNITIO        ","SEEDED HOT DOG FL                       ",19.9,0,0,22.89,0,0
+"HDS            ","HOTDOG ROLLS                            ",5.5,0,0,5.5,0,0
+"HOTCROSS       ","HOT CROSS BUN                           ",10.5,0,0,12.08,0,0
+"JODC           ","CREAM DOUGHNUTS                         ",3.5,0,0,4.03,0,0
+"JOSC           ","SCONE                                   ",3.2,0,0,3.68,0,0
+"JOVET          ","VETKOEK                                 ",3.5,0,0,4.03,0,0
+"JUMB           ","JUMBO BURGER ROLLS                      ",21.9,0,0,25.19,0,0
+"JUMBKR         ","JUMBO BURGER                            ",24.2,0,0,27.83,0,0
+"JUMBOOO        ","JUMBO SPECIAL                           ",19.2,19,19.2,19.2,19,19.2
+"K              ","KOEKSISTERS                             ",1.8,0,0,2.07,0,0
+"KRAWHI         ","WHTE BREAD                              ",5.6,0,0,6.44,0,0
+"LARGEPIE       ","LARGE PIES                              ",9.9,0,0,9.9,0,0
+"LBDG           ","HAMBURGER LARGE ROLL                    ",18.7,0,0,21.51,0,0
+"LBS            ","LARGE BURGER ROLLS                      ",20.2,0,19.7,23.23,0,22.66
+"LBS5           ","LOOSE BURGER ROLL                       ",1.6,0,0,1.84,0,0
+"LBSAM          ","LARGE SOFT BURGER ROLL                  ",18.8,0,0,18.8,0,0
+"LBSC           ","LARGE BURGER                            ",1.85,0,0,2.13,0,0
+"LBSCO          ","LOOSE BURGER ROLLS                      ",1.35,0,0,1.55,0,0
+"LBSG           ","LARGE BURGER ROLLS                      ",5,0,0,5,0,0
+"LBSGD          ","BURGER ROLLS                            ",6.5,6.5,6.5,6.5,6.5,6.5
+"LBSGW          ","BURGER ROLLS                            ",12.5,0,0,14.38,0,0
+"LBSKR          ","LARGE BURGER ROLLS                      ",19.7,0,0,22.66,0,0
+"LBSOR          ","LARGE BURGER ROLLS                      ",18.8,0,0,21.62,0,0
+"LBSPAR         ","LARGE BURGER ROLLS                      ",17,0,0,17,0,0
+"LM             ","LEMON MERINGUE                          ",7.2,0,0,8.28,0,0
+"LRGAPPCR       ","LARGE APPLE CRUMB                       ",26.9,0,0,30.94,0,0
+"LRGLM          ","LARGE LEMON MERINGUE PIE                ",28.9,0,0,33.24,0,0
+"LRGMILK        ","LARGE MILK TART                         ",19,0,0,21.85,0,0
+"MRCABUR        ","LARGE BURGER                            ",18.9,0,0,21.74,0,0
+"MRGAT          ","LARGE GATSBY                            ",8.2,0,0,9.43,0,0
+"MRHD           ","HOT DOG                                 ",18.9,0,0,21.74,0,0
+"MRJUM          ","JUMBO BURGER                            ",23.5,0,0,27.03,0,0
+"MT             ","MINT TART                               ",5.3,0,0,6.1,0,0
+"MTS            ","MILK TART                               ",5.5,0,0,6.33,0,0
+"MTSUN          ","MILK TARTS                              ",4.9,0,0,4.9,0,0
+"MUF            ","MUFFINS ASSORTED                        ",3.95,3.95,0,4.54,4.54,0
+"MUF1           ","MUFFINS ASSORTED                        ",2.9,0,0,3.34,0,0
+"MUFFR          ","MUFFINS                                 ",3.7,0,0,4.26,0,0
+"P1CHI          ","CHICKEN PIE                             ",7.2,0,0,7.2,0,0
+"P1PEP          ","PEPPER STEAK                            ",7.2,0,0,7.2,0,0
+"P1STK          ","STEAK & KIDNEY                          ",7.2,0,0,7.2,0,0
+"P2CH           ","CHICKEN PIE                             ",7.2,0,0,7.2,0,0
+"P2ST           ","PEPPER STEAK                            ",7.7,0,0,7.7,0,0
+"P2STK          ","STEAK & KIDNEY                          ",7.7,0,0,7.7,0,0
+"P2V            ","VETKOEK                                 ",4.5,0,0,4.5,0,0
+"PARGL          ","GATSBY                                  ",8.5,0,0,8.5,0,0
+"PARVLB         ","LARGE BURGER ROLL                       ",18.5,0,0,18.5,0,0
+"PLA4           ","SOFT BURGER ROLLS                       ",19.8,0,0,19.8,0,0
+"PLAC           ","APPLE CRUMB                             ",6.4,0,0,7.36,0,0
+"PLATS          ","APPLE TART                              ",6.4,0,0,7.36,0,0
+"PLBEE          ","BEESTING                                ",7.5,0,0,8.63,0,0
+"PLCA           ","GATSBY                                  ",9.3,0,0,9.3,0,0
+"PLCC           ","CROISSANTS CHEESE                       ",8.5,0,0,9.77,0,0
+"PLCH           ","CROISSANTS CHOC                         ",8.5,0,0,9.77,0,0
+"PLCHDO         ","CHOC RING DOUGHNUT                      ",3.2,0,0,3.68,0,0
+"PLCINA         ","CINNAMON DOUGHNUTS                      ",2.5,0,0,2.88,0,0
+"PLCO           ","COPENHAGENS                             ",4.5,0,0,5.18,0,0
+"PLCR           ","CROISSANTS PLAIN                        ",6.1,0,0,7.02,0,0
+"PLCUST         ","CUSTARD SLICE                           ",8.5,0,0,9.77,0,0
+"PLDC           ","DOUGHNUTS CREAM                         ",4.2,0,0,4.83,0,0
+"PLDCC          ","DOUGHNUTS CUSTARD                       ",4.9,0,0,5.64,0,0
+"PLDOU          ","DOUGHNUTS PLAIN                         ",1.9,0,0,2.19,0,0
+"PLEC           ","ECLAIRS                                 ",6.5,0,0,7.48,0,0
+"PLGB           ","GATSBY                                  ",6.1,0,0,7.02,0,0
+"PLHO           ","HOT DOG                                 ",19,0,0,19,0,0
+"PLJAM          ","JAM DOUGHNUT                            ",3.1,0,0,3.57,0,0
+"PLKOEK         ","KOEKSISTERS                             ",1.3,0,0,1.5,0,0
+"PLLAT          ","APPLE TART                              ",4.9,0,0,5.64,0,0
+"PLLCUST        ","DOUGHNUT CUSTARD                        ",4.9,0,0,5.64,0,0
+"PLLDC          ","DOUGHNUT CREAM                          ",4.2,0,0,4.83,0,0
+"PLLE           ","ECLAIRS                                 ",5.55,0,0,6.38,0,0
+"PLLLM          ","LEMON MERINGUE                          ",6.6,0,0,7.59,0,0
+"PLLM           ","LEMON MERINQUE                          ",5.1,0,0,5.87,0,0
+"PLML           ","LEMINGTONGS                             ",4,0,0,4.6,0,0
+"PLMT           ","MINT TART                               ",5.9,0,0,6.79,0,0
+"PLMTS          ","MILK TART                               ",4.9,0,0,5.64,0,0
+"PLMTT          ","MILK TART                               ",4.5,0,0,5.18,0,0
+"PLMU           ","MUFFINS                                 ",3.5,0,0,4.03,0,0
+"PLMUF          ","MUFFINS                                 ",3.5,0,0,4.03,0,0
+"PLPR           ","PORTUGUESE ROLLS                        ",10.5,0,0,12.08,0,0
+"PLRAI          ","RAISIN LOAF                             ",4.7,0,0,5.41,0,0
+"PLSC           ","SCONE                                   ",3.1,0,0,3.57,0,0
+"PLSCC          ","SLICES CHOCOLATE                        ",6.5,0,0,7.48,0,0
+"PLSM           ","SLICES MOUSE                            ",6.5,0,0,7.48,0,0
+"PLSMG          ","SMALL GATSBY                            ",4.9,0,0,4.9,0,0
+"PLSPR          ","TOP DECK                                ",3.1,0,0,3.57,0,0
+"PLTWIS         ","TWISTED DOUGHNUT                        ",2.5,0,0,2.88,0,0
+"PLWB           ","WHITE BREAD                             ",8,0,0,9.2,0,0
+"PORT           ","PORTUGUSE ROLLS                         ",3.5,0,0,4.03,0,0
+"PORTGW         ","PORTUGUESE ROLLS                        ",13.5,0,0,15.53,0,0
+"PR             ","PORTUGUESE ROLLS                        ",19.7,0,0,22.66,0,0
+"PRAM           ","PORTUGUSE ROLLS                         ",18.8,0,0,18.8,0,0
+"R              ","RYE BREAD                               ",35.9,0,0,41.29,0,0
+"RAD            ","RADIANT BURGERS                         ",23.9,0,0,27.49,0,0
+"RADBUR         ","LARGE BURGERS                           ",17.9,0,0,20.59,0,0
+"RADFL          ","FOOTLONG                                ",5.5,0,0,6.33,0,0
+"RADHOD         ","HOT DOG                                 ",17.9,0,0,20.59,0,0
+"RAISIN         ","RAISIN LOAF                             ",4.85,0,0,5.58,0,0
+"RL             ","RAISIN LOAF                             ",4.6,0,0,5.29,0,0
+"ROCHICK        ","CHICKEN&MUSHROOM                        ",10.3,0,0,10.3,0,0
+"ROPEPPER       ","PEPPER STEAK                            ",10.3,0,0,10.3,0,0
+"ROPLAINST      ","STEAK PIE                               ",10.3,0,0,10.3,0,0
+"ROSTK          ","STEAK&KIDNEY                            ",7,7,7,7,7,7
+"ROYSTEAKK      ","STEAK&KIDNEY                            ",10.3,0,0,10.3,0,0
+"SB             ","SNOWBALL                                ",3.45,0,0,3.97,0,0
+"SBB            ","SUPER BROWN BREAD                       ",19.95,0,0,19.95,0,0
+"SBW            ","SUPER WHOLE WHEAT BREAD                 ",23.8,0,0,23.8,0,0
+"SC             ","SCONE                                   ",5.5,5,0,6.33,5.75,0
+"SCFR           ","SCONES                                  ",3.1,0,0,3.57,0,0
+"SCH            ","SLICE CHOCOLATE CAKE                    ",5.6,7.95,0,6.44,9.14,0
+"SDGL           ","SEEDED BURGER                           ",7.5,0,0,7.5,0,0
+"SDRF           ","SEEDED BURGER ROLLS                     ",9.9,0,0,11.39,0,0
+"SDRFF          ","SEEDED BURGERS                          ",12.2,0,0,14.03,0,0
+"SFT            ","SMALL SOFT ROLL                         ",6.09,0,0,7,0,0
+"SLIDERS        ","BRIOCHE SLIDERS                         ",1.55,0,0,1.55,0,0
+"SM             ","SLICE MOUSSE CAKE                       ",6.15,7.95,0,7.07,9.14,0
+"SUNBB          ","BROWN BREAD                             ",6.1,0,0,6.1,0,0
+"SUNBUR         ","BURGER ROL                              ",19,0,0,19,0,0
+"SUNJUMB        ","JUMBO                                   ",24,0,0,24,0,0
+"SUNMTS         ","MILK TARTS                              ",4.2,0,0,4.2,0,0
+"SUNWB          ","WHITE BREAD                             ",6.1,0,0,6.1,0,0
+"SUUN           ","WHITE BREAD                             ",7.5,0,0,7.5,0,0
+"SWB            ","SUPER WHITE BREAD                       ",19.95,0,0,22.94,0,0
+"TEXGATS        ","GATSBY LARGE                            ",9.5,0,0,10.93,0,0
+"TEXHAM         ","HAMBURGER                               ",19.2,17.9,17.9,22.08,20.59,20.59
+"TRB            ","TRAMEZZINI BROWN                        ",4.14,0,0,4.14,0,0
+"TRW            ","TRAMEZZINI WHITE                        ",4.8,0,0,5.52,0,0
+"V              ","VETKOEK                                 ",5.5,3.7,4.2,6.33,4.26,4.83
+"VISTLB         ","LARGE BURGER ROLLS                      ",11.3,0,0,13,0,0
+"WB             ","WHITE BREAD                             ",9,0,0,10.35,0,0
+"WB1            ","WHITE BREAD UNSLICED                    ",8.7,0,0,8.7,0,0
+"WB2            ","WHITE BREAD SLICED                      ",4.4,0,0,4.4,0,0
+"WBBAR          ","WHITE BREAD                             ",5.6,0,0,5.6,0,0
+"WBPL           ","WHITE BREAD UNSLICED                    ",5.5,0,0,6.33,0,0
+"WBSKR          ","WHITE BREAD SLICED                      ",8.3,0,0,9.55,0,0
+"WBSUN          ","WHITE BREAD                             ",6.5,0,0,6.5,0,0
+"WBUKR          ","WHITE BREAD UNSLICED                    ",8.3,0,0,9.55,0,0
+"XXXL           ","XXX LARGE BURGER ROLL                   ",2.95,0,0,3.39,0,0
+"ZUDOU          ","DOUGHNUTS                               ",2,0,0,2,0,0
+"ZUSC           ","SCONE                                   ",4.5,0,0,4.5,0,0
+"ZUSTK          ","STEAK&KIDNEY                            ",7.5,0,0,7.5,0,0
+"ZUV            ","VETKOEK                                 ",4.5,0,0,4.5,0,0

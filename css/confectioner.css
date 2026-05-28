@@ -1,0 +1,97 @@
+/* --- CONFECTIONER PAGE GLOW-UP --- */
+.conf-hero {
+    height: 500px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.conf-hero-overlay {
+    background: rgba(0, 0, 0, 0.25);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.conf-title-badge {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 40px 60px;
+    text-align: center;
+    border: 1px solid #ddd;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    border-radius: 4px;
+}
+
+.conf-subtitle {
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 10px;
+}
+
+.conf-page-title {
+    font-family: 'Outfit', sans-serif;
+    color: #111;
+    font-size: 52px;
+    margin: 0;
+    line-height: 1;
+}
+
+.conf-divider {
+    width: 50px;
+    height: 2px;
+    background-color: #007bff;
+    margin: 20px auto;
+}
+
+.conf-desc {
+    font-style: italic;
+    color: #555;
+    margin: 0;
+}
+
+/* Category Grid */
+.conf-grid-section { padding: 60px 0; }
+.conf-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+.conf-item {
+    text-align: center;
+}
+.conf-item img {
+    max-width: 100%;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+.btn-category {
+    display: inline-block;
+    background-color: #007bff;
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 12px 24px;
+    margin-top: 15px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.btn-category:hover {
+    background-color: #0056b3;
+}
+
+/* Mobile fix for columns */
+@media (max-width: 768px) {
+    .conf-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+    .conf-grid { grid-template-columns: 1fr; }
+}

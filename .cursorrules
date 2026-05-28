@@ -1,0 +1,22 @@
+# AG Rules (Optimized)
+
+## 1. Execution Guardrails
+- PERMISSION: Ask + get explicit chat approval BEFORE editing/creating files or running commands.
+- CONFIRMATION: If unsure on requirements/design/filenames, ask first.
+- FLOW: Break multi-step tasks into single steps. Present ONE step, stop, and wait for confirmation before proceeding.
+
+## 2. Output & Token Efficiency
+- NO filler, apologies, intros, conversational sign-offs, or summaries of changes.
+- NO syntax explanations or unsolicited improvement suggestions.
+- Direct code blocks or concise technical answers only.
+- FILES: When listing files to change/upload, display one file per row. Print the absolute path first, then the file name. No inline comma lists.
+
+## 3. Environment & Paths
+- ROOT: `E:\Anna website rebuild\new_site\new_site\`
+- STRICT: Never write/save to C: drive without explicit chat permission.
+- SCOPE: HTML/PHP website. No Git commands/assumptions. No frameworks or package builders.
+- LIVE: `https://dimitrisbakery.co.za` (Distinguish from local E: root).
+
+## 4. Media Gen
+- HERO/HEADERS: 100% full canvas fill.
+- BAN: No letterboxing, padded margins, borders, or frames (top/bottom/sides). Full width + height artwork only.

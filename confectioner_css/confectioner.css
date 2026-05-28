@@ -1,0 +1,326 @@
+/* --- 1. CORE STYLES --- */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Source Sans 3', sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- 2. HEADER --- */
+.main-header {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    background: #fff;
+}
+
+.header-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    height: 80px;
+    width: auto;
+    transition: opacity 0.3s;
+}
+
+.logo-link:hover {
+    opacity: 0.8;
+}
+
+.nav-group {
+    text-align: right;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0 0 5px 0;
+    padding: 0;
+    justify-content: flex-end;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #000;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Dropdown Styles */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 220px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    text-align: left;
+    border: 1px solid #eee;
+    top: 100%;
+    right: 0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.dropdown-content a {
+    color: #333 !important;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+    font-weight: 400 !important;
+    border-bottom: 1px solid #f9f9f9;
+    transition: background 0.2s;
+    text-align: left;
+}
+
+.dropdown-content a:last-child {
+    border-bottom: none;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+    color: #007bff !important;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropbtn::after {
+    content: ' \25BE';
+    font-size: 10px;
+    vertical-align: middle;
+    opacity: 0.6;
+}
+
+.header-contact {
+    font-size: 13px;
+}
+
+.phone-link {
+    color: #007bff;
+    text-decoration: underline;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.contact-label {
+    color: #666;
+}
+
+/* --- 3. FINAL FOOTER --- */
+.main-footer {
+    background-color: #f9f9f9;
+    padding: 80px 0 0 0;
+    border-top: 1px solid #eee;
+    color: #555;
+    font-size: 14px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 60px;
+    padding-bottom: 60px;
+}
+
+.footer-logo {
+    height: 60px;
+    margin-bottom: 20px;
+}
+
+.footer-col h4 {
+    color: #111;
+    font-family: 'Outfit', sans-serif;
+    margin-bottom: 25px;
+    font-size: 18px;
+}
+
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-col ul li {
+    margin-bottom: 12px;
+}
+
+.footer-col ul li a {
+    text-decoration: none;
+    color: #555;
+}
+
+.footer-socials a {
+    margin-right: 15px;
+    color: #007bff;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.footer-bottom {
+    background-color: #fff;
+    border-top: 1px solid #eee;
+    padding: 25px 0;
+}
+
+.footer-bottom-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.legal-links a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #999;
+}
+
+/* --- 4. RESPONSIVE DESIGN FOR HEADER/FOOTER --- */
+@media (max-width: 900px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .header-grid,
+    .footer-bottom-flex {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .nav-links {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+
+/* --- CONFECTIONER PAGE GLOW-UP --- */
+.conf-hero {
+    height: 500px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.conf-hero-overlay {
+    background: rgba(0, 0, 0, 0.25);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.conf-title-badge {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 40px 60px;
+    text-align: center;
+    border: 1px solid #ddd;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+.conf-subtitle {
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 10px;
+}
+
+.conf-page-title {
+    font-family: 'Outfit', sans-serif;
+    color: #111;
+    font-size: 52px;
+    margin: 0;
+    line-height: 1;
+}
+
+.conf-divider {
+    width: 50px;
+    height: 2px;
+    background-color: #007bff;
+    margin: 20px auto;
+}
+
+.conf-desc {
+    font-style: italic;
+    color: #555;
+    margin: 0;
+}
+
+/* Category Grid */
+.conf-grid-section {
+    padding: 60px 0;
+}
+
+.conf-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.conf-item {
+    text-align: center;
+}
+
+.conf-item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.btn-category {
+    display: inline-block;
+    background-color: #007bff;
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 12px 24px;
+    margin-top: 15px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.btn-category:hover {
+    background-color: #0056b3;
+}
+
+/* Mobile fix for columns */
+@media (max-width: 768px) {
+    .conf-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .conf-grid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,24 @@
+# cms/.htaccess — Security rules for the CMS folder
+
+# Prevent directory listing
+Options -Indexes
+
+# Block direct access to PHP config and auth helpers
+<FilesMatch "^(config|auth)\.php$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Block direct access to the SQL setup file
+<FilesMatch "\.sql$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Protect uploaded files from PHP execution
+# (belt-and-suspenders: uploads should only serve images)
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    # Prevent PHP execution inside uploads/
+    RewriteRule ^uploads/.*\.php$ - [F,L]
+</IfModule>

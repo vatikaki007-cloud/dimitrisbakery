@@ -1,0 +1,32 @@
+Image creation (Do not let antigravity create images)
+
+Create a new image based on the style of the attached reference image. 
+
+[STYLE]: Describe the art style of your reference photo here (e.g., "Warm oil painting, rustic watercolor, vintage 1950s bakery illustration, realistic photography").
+
+[SUBJECT]: Describe the new topic here (e.g., "A close-up of freshly baked sourdough bread on a wooden table").
+
+[COLOR PALETTE]: Mention the colors from the reference image (e.g., "Use the same warm gold, brown, and soft cream tones from the reference image").
+
+[LIGHTING]: Describe the light (e.g., "Soft morning sunlight coming from the side").
+
+[GUARDRAILS]: The image must fill 100% of the canvas. No black letterbox bars, padded margins, border lines, or frames at the top or bottom. The artwork must occupy the full width and height.
+
+Example
+
+Create a wide website hero banner for sweet treats, strictly matching the art style of the attached reference.
+
+A panoramic, wide aspect ratio website hero banner 16:9.
+
+[STYLE]: Vintage hand-drawn engraving and fine ink pen etching. Use delicate cross-hatching and fine sketch lines to define textures. Overlay a very soft, desaturated watercolor wash over the illustrations.
+[BACKGROUND]: A wide, continuous rustic textured light beige parchment paper background stretching fully across the canvas.
+[SUBJECT]: Top-down, overhead view of sweet treats (macarons, cupcakes, a slice of cake) arranged along the far left and far right edges of the canvas only. The center 50% of the image must be completely empty parchment paper for text placement.
+[COLOR PALETTE]: Muted, earthy tones. Warm browns, creams, and very soft pastel accents.
+[GUARDRAILS]: Aspect ratio is wide banner (16:9). The artwork must bleed to the absolute edges. No square frames, no borders, and zero black letterbox margins at the sides, top, or bottom.
+
+To fix the white block in the middle
+
+Fix the banner layout in sweet_treats.html so that the text is wrapped in the exact same white content card container styles used on confectioner.html. 
+
+Do not modify or mention the background image file itself. Strictly output the required file changes following the rule to display them with their absolute path, one per row.
+

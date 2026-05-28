@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekly Menu | Home Cooked Meals | Dimitri's Bakery</title>
+    <meta name="description" content="Tired of cooking? Check out our weekly menu of delicious, home-cooked meals. Dimitri's Bakery offers a variety of prepared meals to make your week easier in Cape Town.">
+    <meta name="keywords" content="weekly menu, home cooked meals Cape Town, prepared meals Parow, Dimitri's Bakery menu, food delivery Cape Town">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dimitrisbakery.co.za/weekley_menu/weekly_menu.html">
+    <meta property="og:title" content="Weekly Home Cooked Meals | Dimitri's Bakery">
+    <meta property="og:description" content="Delicious home-cooked meals prepared for you every week. Save time and eat well with Dimitri's Bakery.">
+    <meta property="og:image" content="https://dimitrisbakery.co.za/index_images/logo.png">
+
+    <link rel="stylesheet" href="css/weekly_menu.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Source+Sans+3:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/jpeg" href="../index_images/logo.png">
+</head>
+<body>
+
+<!-- Header (Consistent Navigation) -->
+<div id="global-nav"></div>
+<script>
+  fetch('/global_nav.html')
+    .then(r => r.text())
+    .then(html => {
+      document.getElementById('global-nav').innerHTML = html;
+    })
+    .catch(err => console.error('Failed to load global nav:', err));
+</script>
+
+<main>
+    <!-- HERO SECTION -->
+    <section class="menu-hero" style="background-image: url('images/weekly_menu_hero.jpg');">
+        <div class="menu-hero-overlay">
+            <div class="container" style="text-align: center;">
+                <div class="menu-box">
+                    <h1 class="menu-title">Weekly Menu's</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTENT SECTION -->
+    <section class="container menu-content">
+        <p>Stay delighted with <strong>Dimitri's Bakery Weekly Menus in Parow, Cape Town</strong>. Our <strong>menus change every week</strong>, offering a variety of freshly baked treats, desserts, platters, and sweet surprises. Perfect for <strong>office orders, family gatherings, or casual indulgence</strong>, our weekly selections provide something for everyone.</p>
+        <p>Each week's menu features <strong>high-quality ingredients, seasonal flavors, and creative presentations</strong>, ensuring your treats are always fresh, delicious, and exciting. Follow our <strong>weekly updates</strong> to plan your orders and enjoy something new every week!</p>
+        <p>📍 Serving all of <strong>Parow and surrounding areas</strong>, Dimitri's Bakery is committed to <strong>taste, quality, and customer satisfaction</strong>. Contact us today to request this week's menu and discover your next favorite treat!</p>
+        
+        <div class="menu-display">
+            <img src="images/menu.jpg" alt="Weekly Menu" class="menu-image">
+            <div class="order-button-container">
+                <a href="https://wa.me/27799815410?text=I'd%20like%20to%20place%20an%20order" target="_blank" class="btn-primary">Place an Order</a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer class="main-footer">
+    <div class="container footer-grid">
+        <!-- Column 1: Quick About & Social -->
+        <div class="footer-col">
+            <img src="../index_images/logo.png" alt="Dimitri's Bakery" class="footer-logo">
+            <p>Quality confectionery and turnkey catering services for every occasion. Family owned and run since the beginning.</p>
+            <div class="footer-socials">
+                <a href="https://www.facebook.com/dimitrisbakery" target="_blank">Facebook</a>
+                <a href="https://wa.me/27799815410" target="_blank">WhatsApp</a>
+                <a href="#">Instagram</a>
+            </div>
+        </div>
+
+        <!-- Column 2: Quick Links -->
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="weekly_menu.html">Weekly Menu's</a></li>
+                <li><a href="../confectioner.html">Confectionery</a></li>
+                <li><a href="../catering/catering.html">Catering</a></li>
+            </ul>
+        </div>
+
+        <!-- Column 3: Contact Info -->
+        <div class="footer-col">
+            <h4>Get In Touch</h4>
+            <p><strong>Phone:</strong> 079 981 5410</p>
+            <p><strong>Email:</strong> info@dimitrisbakery.co.za</p>
+            <p><strong>Location:</strong> Cape Town, South Africa</p>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <div class="container footer-bottom-flex">
+            <p>Copyright © 2026 | Dimitri's Bakery</p>
+            <div class="legal-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
