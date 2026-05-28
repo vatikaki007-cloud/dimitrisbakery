@@ -564,6 +564,10 @@ require_once __DIR__ . '/navbar.php';
         table.invoice-grid input { border: none; width: 100%; padding: 5px; background: transparent; }
         table.invoice-grid input:focus { outline: 2px solid #0056b3; background: #fff; }
         
+        .btn-delete-line { background: #dc3545; color: white; border: none; padding: 4px 8px; border-radius: 3px; cursor: pointer; font-size: 16px; font-weight: bold; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+        .btn-delete-line:hover { background: #c82333; }
+        .btn-delete-line:active { background: #bd2130; }
+        
         .totals-box { float: right; width: 300px; padding: 15px; background: #f9f9f9; border: 1px solid #ddd; border-radius: 4px; }
         .totals-box div { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 14px; }
         .grand-total { font-weight: bold; font-size: 18px; margin-top: 10px; border-top: 2px solid #ccc; padding-top: 10px; }
@@ -639,6 +643,7 @@ require_once __DIR__ . '/navbar.php';
                         <th style="width: 5%">Disc%</th>
                         <th style="width: 5%">Tax%</th>
                         <th style="width: 15%">Nett</th>
+                        <th style="width: 3%; text-align: center;">Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -654,6 +659,7 @@ require_once __DIR__ . '/navbar.php';
                         <td><input type="number" step="0.01" name="lines[0][disc_percent]" class="input-disc calc" value="0.00" onchange="calcLine(this); saveDraft()" onkeyup="calcLine(this)" onfocus="this.select()"></td>
                         <td><input type="number" step="0.01" name="lines[0][tax_percent]" class="input-tax calc" value="0.00" onchange="calcLine(this); saveDraft()" onkeyup="calcLine(this)" onfocus="this.select()"></td>
                         <td><input type="number" step="0.01" name="lines[0][nett_price]" class="input-nett" readonly></td>
+                        <td style="text-align: center;"><button type="button" class="btn-delete-line" onclick="deleteLine(this)" title="Delete this line">✕</button></td>
                     </tr>
                 </tbody>
             </table>
@@ -743,8 +749,24 @@ require_once __DIR__ . '/navbar.php';
                 <td><input type="number" step="0.01" name="lines[${lineCount}][unit_price]" class="input-price calc" onchange="calcLine(this); saveDraft()" onkeyup="calcLine(this)" onfocus="this.select()"></td>
                 <td><input type="number" step="0.01" name="lines[${lineCount}][disc_percent]" class="input-disc calc" value="0.00" onchange="calcLine(this); saveDraft()" onkeyup="calcLine(this)" onfocus="this.select()"></td>
                 <td><input type="number" step="0.01" name="lines[${lineCount}][tax_percent]" class="input-tax calc" value="0.00" onchange="calcLine(this); saveDraft()" onkeyup="calcLine(this)" onfocus="this.select()"></td>
-                <td><input type="number" step="0.01" name="lines[${lineCount}][nett_price]" class="input-nett" readonly></td>`;
+                <td><input type="number" step="0.01" name="lines[${lineCount}][nett_price]" class="input-nett" readonly></td>
+                <td style="text-align: center;"><button type="button" class="btn-delete-line" onclick="deleteLine(this)" title="Delete this line">✕</button></td>`;
             tbody.appendChild(tr); tr.querySelector('.input-code').focus(); lineCount++; saveDraft();
+        }
+
+        function deleteLine(btn) {
+            let row = btn.closest('tr');
+            let tbody = row.closest('tbody');
+            
+            // Don't allow deleting if it's the only row
+            if (tbody.querySelectorAll('tr').length <= 1) {
+                alert('You must have at least one line item.');
+                return;
+            }
+            
+            row.remove();
+            calcTotals();
+            saveDraft();
         }
 
         // Customer/Supplier Search
@@ -919,7 +941,7 @@ require_once __DIR__ . '/navbar.php';
                 let tb = document.querySelector('#linesTable tbody'); tb.innerHTML = ''; lineCount = 0;
                 data.lines.forEach((l, i) => {
                     let tr = document.createElement('tr'); tr.setAttribute('data-index', i);
-                    tr.innerHTML = `<td style="position: relative;"><input type="text" name="lines[${i}][code]" class="input-code" value="${l.code}" autocomplete="off" onkeydown="handleCodeKey(event, this, ${i})" oninput="searchProduct(this, ${i})" onblur="setTimeout(() => hideResults(${i}), 200)" onfocus="this.select()"><div class="autocomplete-results" id="autocomplete-${i}"></div></td><td><input type="text" name="lines[${i}][description]" class="input-desc" value="${l.description}" onchange="saveDraft()" onfocus="this.select()"></td><td><input type="number" step="0.01" name="lines[${i}][quantity]" class="input-qty calc" value="${l.quantity}" onchange="calcLine(this); saveDraft()" onkeyup="calcLine(this)" onfocus="this.select()"></td><td><input type="text" name="lines[${i}][unit]" class="input-unit" value="${l.unit}" onchange="saveDraft()" onfocus="this.select()"></td><td><input type="number" step="0.01" name="lines[${i}][unit_price]" class="input-price calc" value="${l.unit_price}" onchange="calcLine(this); saveDraft()" onkeyup="calcLine(this)" onfocus="this.select()"></td><td><input type="number" step="0.01" name="lines[${i}][disc_percent]" class="input-disc calc" value="${l.disc_percent}" onchange="calcLine(this); saveDraft()" onkeyup="calcLine(this)" onfocus="this.select()"></td><td><input type="number" step="0.01" name="lines[${i}][tax_percent]" class="input-tax calc" value="${l.tax_percent}" onchange="calcLine(this); saveDraft()" onkeyup="calcLine(this)" onfocus="this.select()"></td><td><input type="number" step="0.01" name="lines[${i}][nett_price]" class="input-nett" value="${l.nett_price}" readonly></td>`;
+                    tr.innerHTML = `<td style="position: relative;"><input type="text" name="lines[${i}][code]" class="input-code" value="${l.code}" autocomplete="off" onkeydown="handleCodeKey(event, this, ${i})" oninput="searchProduct(this, ${i})" onblur="setTimeout(() => hideResults(${i}), 200)" onfocus="this.select()"><div class="autocomplete-results" id="autocomplete-${i}"></div></td><td><input type="text" name="lines[${i}][description]" class="input-desc" value="${l.description}" onchange="saveDraft()" onfocus="this.select()"></td><td><input type="number" step="0.01" name="lines[${i}][quantity]" class="input-qty calc" value="${l.quantity}" onchange="calcLine(this); saveDraft()" onkeyup="calcLine(this)" onfocus="this.select()"></td><td><input type="text" name="lines[${i}][unit]" class="input-unit" value="${l.unit}" onchange="saveDraft()" onfocus="this.select()"></td><td><input type="number" step="0.01" name="lines[${i}][unit_price]" class="input-price calc" value="${l.unit_price}" onchange="calcLine(this); saveDraft()" onkeyup="calcLine(this)" onfocus="this.select()"></td><td><input type="number" step="0.01" name="lines[${i}][disc_percent]" class="input-disc calc" value="${l.disc_percent}" onchange="calcLine(this); saveDraft()" onkeyup="calcLine(this)" onfocus="this.select()"></td><td><input type="number" step="0.01" name="lines[${i}][tax_percent]" class="input-tax calc" value="${l.tax_percent}" onchange="calcLine(this); saveDraft()" onkeyup="calcLine(this)" onfocus="this.select()"></td><td><input type="number" step="0.01" name="lines[${i}][nett_price]" class="input-nett" value="${l.nett_price}" readonly></td><td style="text-align: center;"><button type="button" class="btn-delete-line" onclick="deleteLine(this)" title="Delete this line">✕</button></td>`;
                     tb.appendChild(tr); lineCount++;
                 });
                 calcTotals();
