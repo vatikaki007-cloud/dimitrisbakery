@@ -478,7 +478,7 @@ foreach ($all_calls as $c) {
                                             <span><?= htmlspecialchars($o['customer_name']) ?></span>
                                             <span style="font-size:12px; font-weight:normal; color:#888;">Inv: <?= htmlspecialchars($o['invoice_no']) ?></span>
                                         </div>
-                                        <form class="inline-dispatch-form" onsubmit="dispatchOrder(event, <?= $o['id'] ?>)">
+                                        <form class="inline-dispatch-form" onsubmit="dispatchOrder(event, <?= $o['id'] ?>, '<?= $current_tab ?>')">
                                             <input type="hidden" name="invoice_id" value="<?= $o['id'] ?>">
                                             <table class="order-lines">
                                                 <?php 
@@ -505,7 +505,15 @@ foreach ($all_calls as $c) {
                                                 <?php endforeach; endif; ?>
                                             </table>
                                             <div style="display:flex; gap:10px; margin-top:10px;">
-                                                <button type="submit" class="btn-dispatch" <?= $has_missing_prices ? 'disabled' : '' ?> title="<?= $has_missing_prices ? 'Cannot finalize: items need pricing' : 'Print and finalize this order' ?>">🖨 Print & Finalize</button>
+                                                <?php 
+                                                $is_today = ($current_tab === date('Y-m-d'));
+                                                $button_text = $is_today ? '🖨 Print' : '🖨 Print & Finalize';
+                                                $button_disabled = $has_missing_prices ? 'disabled' : '';
+                                                $button_title = $has_missing_prices ? 'Cannot finalize: items need pricing' : ($is_today ? 'Print invoice' : 'Print and finalize this order');
+                                                ?>
+                                                <button type="submit" class="btn-dispatch" <?= $button_disabled ?> title="<?= $button_title ?>">
+                                                    <?= $button_text ?>
+                                                </button>
                                                 <a href="invoice_create.php?edit_id=<?= $o['id'] ?>&from_orders=1" class="btn-edit">✎ Edit</a>
                                             </div>
                                             <?php if ($has_missing_prices): ?>
@@ -635,7 +643,7 @@ foreach ($all_calls as $c) {
             });
         }
 
-        function dispatchOrder(event, invoiceId) {
+        function dispatchOrder(event, invoiceId, currentDate) {
             event.preventDefault();
             let form = event.target;
             let btn = form.querySelector('.btn-dispatch');
@@ -646,38 +654,48 @@ foreach ($all_calls as $c) {
 
             let formData = new FormData(form);
             
-            fetch('orders_dashboard.php?ajax_inline_dispatch=1', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    // 1. Open Print Dialog in same tab and return
-                    window.location.href = 'print_invoice.php?id=' + invoiceId + '&print=1&return=orders_dashboard.php';
-                    let box = document.getElementById('order-box-' + invoiceId);
-                    box.style.opacity = '0';
-                    setTimeout(() => {
-                        box.style.display = 'none';
-                        // Optional: decrease badge count
-                        let badge = box.closest('.col-orders').querySelector('.badge-count');
-                        if (badge) {
-                            let count = parseInt(badge.innerText) - 1;
-                            badge.innerText = count;
-                            if (count <= 0) badge.style.background = '#6c757d';
-                        }
-                    }, 300);
-                } else {
-                    alert('Error dispatching order: ' + data.error);
+            // Check if this is today's date - if so, just print without finalizing
+            let today = new Date().toISOString().split('T')[0];
+            let shouldFinalize = (currentDate !== today);
+            
+            let url = shouldFinalize ? 'orders_dashboard.php?ajax_inline_dispatch=1' : 'print_invoice.php?id=' + invoiceId + '&print=1&return=orders_dashboard.php';
+            
+            if (shouldFinalize) {
+                fetch(url, {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Open Print Dialog
+                        window.location.href = 'print_invoice.php?id=' + invoiceId + '&print=1&return=orders_dashboard.php';
+                        let box = document.getElementById('order-box-' + invoiceId);
+                        box.style.opacity = '0';
+                        setTimeout(() => {
+                            box.style.display = 'none';
+                            let badge = box.closest('.col-orders').querySelector('.badge-count');
+                            if (badge) {
+                                let count = parseInt(badge.innerText) - 1;
+                                badge.innerText = count;
+                                if (count <= 0) badge.style.background = '#6c757d';
+                            }
+                        }, 300);
+                    } else {
+                        alert('Error dispatching order: ' + data.error);
+                        btn.innerHTML = '🖨 Print & Finalize';
+                        btn.disabled = false;
+                    }
+                })
+                .catch(error => {
+                    alert('Network error occurred.');
                     btn.innerHTML = '🖨 Print & Finalize';
                     btn.disabled = false;
-                }
-            })
-            .catch(error => {
-                alert('Network error occurred.');
-                btn.innerHTML = '🖨 Print & Finalize';
-                btn.disabled = false;
-            });
+                });
+            } else {
+                // Just print, don't finalize
+                window.location.href = url;
+            }
         }
     </script>
 </body>
