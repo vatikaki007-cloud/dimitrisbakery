@@ -56,7 +56,38 @@ if (isset($_GET['ajax_update_line'])) {
     exit;
 }
 
-// Handle AJAX Inline Dispatch
+// Handle AJAX Generate Invoice Number (for Today's print)
+if (isset($_GET['ajax_generate_invoice'])) {
+    header('Content-Type: application/json');
+    try {
+        $invoice_id = $_POST['invoice_id'] ?? 0;
+        
+        if (!$invoice_id) throw new Exception("Invalid Invoice ID");
+        
+        $pdo->beginTransaction();
+        
+        // Check if invoice_number already exists
+        $stmt_check = $pdo->prepare("SELECT invoice_number FROM acc_invoices WHERE id = ?");
+        $stmt_check->execute([$invoice_id]);
+        $existing = $stmt_check->fetch(PDO::FETCH_ASSOC);
+        
+        if (!$existing['invoice_number']) {
+            // Generate new invoice number only if it doesn't exist
+            $new_invoice_no = 'INV-' . strtoupper(uniqid());
+            $pdo->prepare("UPDATE acc_invoices SET invoice_number = ? WHERE id = ?")
+                ->execute([$new_invoice_no, $invoice_id]);
+        }
+        
+        $pdo->commit();
+        echo json_encode(['success' => true, 'invoice_id' => $invoice_id]);
+    } catch (\Exception $e) {
+        if ($pdo->inTransaction()) $pdo->rollBack();
+        echo json_encode(['success' => false, 'error' => $e->getMessage()]);
+    }
+    exit;
+}
+
+// Handle AJAX Inline Dispatch (for Yesterday+ Print & Finalize)
 if (isset($_GET['ajax_inline_dispatch'])) {
     header('Content-Type: application/json');
     try {
@@ -99,8 +130,15 @@ if (isset($_GET['ajax_inline_dispatch'])) {
             $update_line->execute([$qty, $nett_price, $line_id]);
         }
         
-        // Generate new invoice number (INV-*)
-        $new_invoice_no = 'INV-' . strtoupper(uniqid());
+        // Generate new invoice number (INV-*) only if it doesn't exist
+        $stmt_check = $pdo->prepare("SELECT invoice_number FROM acc_invoices WHERE id = ?");
+        $stmt_check->execute([$invoice_id]);
+        $existing = $stmt_check->fetch(PDO::FETCH_ASSOC);
+        
+        $new_invoice_no = $existing['invoice_number'];
+        if (!$new_invoice_no) {
+            $new_invoice_no = 'INV-' . strtoupper(uniqid());
+        }
         
         // Update Invoice totals, set to unpaid, and store invoice number
         // Note: we assume invoice discount is 0 for simplicity, or we could fetch it.
@@ -654,22 +692,26 @@ foreach ($all_calls as $c) {
 
             let formData = new FormData(form);
             
-            // Check if this is today's date - if so, just print without finalizing
+            // Check if this is today's date
             let today = new Date().toISOString().split('T')[0];
-            let shouldFinalize = (currentDate !== today);
+            let isToday = (currentDate === today);
             
-            let url = shouldFinalize ? 'orders_dashboard.php?ajax_inline_dispatch=1' : 'print_invoice.php?id=' + invoiceId + '&print=1&return=orders_dashboard.php';
+            // For today: just generate invoice number and print
+            // For yesterday+: finalize (change status to unpaid) and print
+            let url = isToday ? 'orders_dashboard.php?ajax_generate_invoice=1' : 'orders_dashboard.php?ajax_inline_dispatch=1';
             
-            if (shouldFinalize) {
-                fetch(url, {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        // Open Print Dialog
-                        window.location.href = 'print_invoice.php?id=' + invoiceId + '&print=1&return=orders_dashboard.php';
+            fetch(url, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Open Print Dialog
+                    window.location.href = 'print_invoice.php?id=' + invoiceId + '&print=1&return=orders_dashboard.php';
+                    
+                    // Only hide if finalizing (not today)
+                    if (!isToday) {
                         let box = document.getElementById('order-box-' + invoiceId);
                         box.style.opacity = '0';
                         setTimeout(() => {
@@ -681,21 +723,18 @@ foreach ($all_calls as $c) {
                                 if (count <= 0) badge.style.background = '#6c757d';
                             }
                         }, 300);
-                    } else {
-                        alert('Error dispatching order: ' + data.error);
-                        btn.innerHTML = '🖨 Print & Finalize';
-                        btn.disabled = false;
                     }
-                })
-                .catch(error => {
-                    alert('Network error occurred.');
-                    btn.innerHTML = '🖨 Print & Finalize';
+                } else {
+                    alert('Error: ' + data.error);
+                    btn.innerHTML = isToday ? '🖨 Print' : '🖨 Print & Finalize';
                     btn.disabled = false;
-                });
-            } else {
-                // Just print, don't finalize
-                window.location.href = url;
-            }
+                }
+            })
+            .catch(error => {
+                alert('Network error occurred.');
+                btn.innerHTML = isToday ? '🖨 Print' : '🖨 Print & Finalize';
+                btn.disabled = false;
+            });
         }
     </script>
 </body>
