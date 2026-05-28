@@ -1,7 +1,6 @@
 <?php
 require_once __DIR__ . '/config.php';
 if (session_status() === PHP_SESSION_NONE) { session_start(); }
-require_once __DIR__ . '/navbar.php';
 $pdo = get_db();
 
 // Ensure database columns exist
@@ -117,6 +116,8 @@ if (isset($_GET['ajax_inline_dispatch'])) {
     exit;
 }
 
+require_once __DIR__ . '/navbar.php';
+
 // Handle Dismiss (Skip for today)
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'dismiss_customer') {
     $customer_id = $_POST['customer_id'] ?? 0;
@@ -165,8 +166,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     header("Location: orders_dashboard.php?reset=success");
     exit;
 }
-
-require_once __DIR__ . '/navbar.php';
 
 // Get active dates for tabs (dates with un-archived invoices)
 $dates_stmt = $pdo->query("
