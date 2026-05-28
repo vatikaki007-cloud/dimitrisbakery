@@ -80,7 +80,7 @@ try {
         .doc-type { text-align: center; font-weight: bold; margin-bottom: 10px; display: block; width: 100%; }
         .doc-header-row { display: flex; justify-content: flex-end; margin-bottom: 5px; }
         .doc-header-label { width: 120px; text-align: left; }
-        .doc-header-value { width: 100px; text-align: right; }
+        .doc-header-value { width: 150px; text-align: right; word-break: break-word; }
         
         /* Customer & Account Info */
         .customer-section { display: flex; justify-content: space-between; margin-bottom: 30px; }
