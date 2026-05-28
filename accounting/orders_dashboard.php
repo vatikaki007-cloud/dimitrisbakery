@@ -194,7 +194,7 @@ $stmt_orders = $pdo->prepare("
     SELECT i.*, c.name as customer_name, c.route_id 
     FROM acc_invoices i 
     JOIN acc_customers c ON i.entity_id = c.id 
-    WHERE i.status = 'order' AND i.type = 'customer' AND i.date = ? AND i.bakers_sheet_id IS NULL
+    WHERE i.status IN ('order', 'unpaid') AND i.type = 'customer' AND i.date = ? AND i.bakers_sheet_id IS NULL
     ORDER BY c.name ASC
 ");
 $stmt_orders->execute([$current_tab]);
@@ -249,7 +249,7 @@ $stmt_bakers = $pdo->prepare("
     SELECT l.code, l.description, SUM(l.quantity) as total_qty
     FROM acc_invoice_lines l
     JOIN acc_invoices i ON l.invoice_id = i.id
-    WHERE i.type = 'customer' AND i.date = ? AND i.bakers_sheet_id IS NULL AND i.status = 'order'
+    WHERE i.type = 'customer' AND i.date = ? AND i.bakers_sheet_id IS NULL AND i.status IN ('order', 'unpaid')
     GROUP BY l.code, l.description
     HAVING total_qty > 0
     ORDER BY l.code ASC
