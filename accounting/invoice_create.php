@@ -466,6 +466,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $edit_data_json = '';
 $edit_id = $_GET['edit_id'] ?? 0;
+$from_orders = isset($_GET['from_orders']) ? 1 : 0;
 if ($edit_id) {
     $pdo = get_db();
     // Fetch the invoice first to know its type
@@ -498,6 +499,7 @@ if ($edit_id) {
             'mail_subject'    => 'Tax Invoice ' . $inv['invoice_no'],
             'auto_mail'       => false,
             'auto_print'      => true,
+            'from_orders'     => $from_orders,
             'lines'           => array_map(function($l) {
                 return [
                     'code'         => $l['code'],
@@ -600,6 +602,7 @@ require_once __DIR__ . '/navbar.php';
                             </select>
                             <div style="flex:1; position: relative;">
                                 <input type="hidden" name="edit_invoice_id" id="edit_invoice_id" value="">
+                                <input type="hidden" name="from_orders" id="from_orders" value="">
                                 <input type="hidden" name="customer_id" id="customer_id">
                                 <input type="hidden" name="account_ref" id="account_ref">
                                 <input type="text" id="customer_search" placeholder="Search customer..." name="customer_search" autocomplete="off" onkeydown="handleCustomerKey(event)" oninput="searchCustomer(this)" onblur="setTimeout(hideCustomerResults, 200)" onfocus="this.select()">
@@ -872,6 +875,7 @@ require_once __DIR__ . '/navbar.php';
         function saveDraft() {
             let d = { lines: [] };
             d.edit_invoice_id = document.getElementById('edit_invoice_id').value;
+            d.from_orders = document.getElementById('from_orders').value;
             d.status = document.getElementById('invoice_status').value;
             d.customer_id = document.getElementById('customer_id').value;
             d.customer_search = document.getElementById('customer_search').value;
@@ -892,6 +896,7 @@ require_once __DIR__ . '/navbar.php';
             let dr = localStorage.getItem('acc_invoice_draft'); if (!dr) return;
             let data = JSON.parse(dr);
             document.getElementById('edit_invoice_id').value = data.edit_invoice_id || '';
+            document.getElementById('from_orders').value = data.from_orders || '';
             document.getElementById('invoice_status').value = data.status || 'unpaid';
             toggleUpdateBtn();
             document.getElementById('customer_id').value = data.customer_id || '';
@@ -941,11 +946,22 @@ require_once __DIR__ . '/navbar.php';
         function toggleUpdateBtn() {
             const status = document.getElementById('invoice_status').value;
             const btn = document.getElementById('btn_update');
+            const btnDone = document.getElementById('btn_done');
+            const fromOrders = document.getElementById('from_orders').value;
+            
             if (status === 'order') {
                 btn.style.display = 'inline-block';
                 btn.textContent = document.getElementById('edit_invoice_id').value ? 'Update' : 'Save as Order';
+                
+                // If editing from orders dashboard, hide Done button
+                if (fromOrders) {
+                    btnDone.style.display = 'none';
+                } else {
+                    btnDone.style.display = 'inline-block';
+                }
             } else {
                 btn.style.display = 'none';
+                btnDone.style.display = 'inline-block';
             }
         }
 

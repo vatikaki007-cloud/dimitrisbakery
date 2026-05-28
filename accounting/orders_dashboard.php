@@ -493,7 +493,7 @@ foreach ($all_calls as $c) {
                                             </table>
                                             <div style="display:flex; gap:10px; margin-top:10px;">
                                                 <button type="submit" class="btn-dispatch">🖨 Print & Finalize</button>
-                                                <a href="invoice_create.php?edit_id=<?= $o['id'] ?>" class="btn-edit">✎ Edit</a>
+                                                <a href="invoice_create.php?edit_id=<?= $o['id'] ?>&from_orders=1" class="btn-edit">✎ Edit</a>
                                             </div>
                                         </form>
                                     </li>
