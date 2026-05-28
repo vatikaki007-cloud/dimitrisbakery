@@ -1,7 +1,6 @@
 <?php 
 require_once __DIR__ . '/config.php';
 if (session_status() === PHP_SESSION_NONE) { session_start(); }
-require_once __DIR__ . '/navbar.php';
 $pdo = get_db();
 
 // Ensure email_sent column exists
@@ -67,6 +66,8 @@ if (isset($_GET['ajax_status_update'])) {
     }
     exit;
 }
+
+require_once __DIR__ . '/navbar.php';
 
 // Fetch filters
 $year_filter = $_GET['year'] ?? date('Y');
