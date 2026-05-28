@@ -98,17 +98,14 @@ if (isset($_GET['ajax_inline_dispatch'])) {
             $update_line->execute([$qty, $nett_price, $line_id]);
         }
         
-        // Generate new invoice number (INV-*)
-        $new_invoice_no = 'INV-' . strtoupper(uniqid());
-        
-        // Update Invoice totals, set to unpaid, and change invoice number
+        // Update Invoice totals and set to unpaid
         // Note: we assume invoice discount is 0 for simplicity, or we could fetch it.
         // The simplest approach is total_discount = 0, amount_excl = total_nett
         $amount_excl = $total_nett;
         $grand_total = $amount_excl + $total_tax;
         
-        $pdo->prepare("UPDATE acc_invoices SET total_nett = ?, amount_excl = ?, tax = ?, total = ?, status = 'unpaid', invoice_no = ? WHERE id = ?")
-            ->execute([$total_nett, $amount_excl, $total_tax, $grand_total, $new_invoice_no, $invoice_id]);
+        $pdo->prepare("UPDATE acc_invoices SET total_nett = ?, amount_excl = ?, tax = ?, total = ?, status = 'unpaid' WHERE id = ?")
+            ->execute([$total_nett, $amount_excl, $total_tax, $grand_total, $invoice_id]);
             
         $pdo->commit();
         echo json_encode(['success' => true, 'invoice_id' => $invoice_id]);
