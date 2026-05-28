@@ -211,8 +211,34 @@ if (!empty($order_ids)) {
     $stmt_lines->execute($order_ids);
     $all_lines = $stmt_lines->fetchAll(PDO::FETCH_ASSOC);
     
+    // For each line, check if it has price history for the customer
     foreach ($all_lines as $line) {
-        $lines_by_invoice[$line['invoice_id']][] = $line;
+        $invoice_id = $line['invoice_id'];
+        $customer_id = null;
+        
+        // Find customer_id from the order
+        foreach ($all_orders as $order) {
+            if ($order['id'] == $invoice_id) {
+                $customer_id = $order['entity_id'];
+                break;
+            }
+        }
+        
+        // Check if this product has been invoiced before for this customer
+        if ($customer_id) {
+            $stmt_check = $pdo->prepare("
+                SELECT COUNT(*) as count FROM acc_invoice_lines l
+                JOIN acc_invoices i ON l.invoice_id = i.id
+                WHERE i.entity_id = ? AND l.code = ? AND i.id != ?
+            ");
+            $stmt_check->execute([$customer_id, $line['code'], $invoice_id]);
+            $result = $stmt_check->fetch(PDO::FETCH_ASSOC);
+            $line['has_price'] = $result['count'] > 0;
+        } else {
+            $line['has_price'] = true;
+        }
+        
+        $lines_by_invoice[$invoice_id][] = $line;
     }
 }
 
@@ -447,14 +473,21 @@ foreach ($all_calls as $c) {
                                                 <?php 
                                                 $lines = $lines_by_invoice[$o['id']] ?? [];
                                                 if(empty($lines)): ?>
-                                                    <tr><td colspan="2" style="color:#aaa; font-style:italic;">No items found.</td></tr>
+                                                    <tr><td colspan="3" style="color:#aaa; font-style:italic;">No items found.</td></tr>
                                                 <?php else: 
-                                                    foreach ($lines as $line): ?>
+                                                    foreach ($lines as $line): 
+                                                        $has_price = $line['has_price'] ?? true;
+                                                    ?>
                                                     <tr>
                                                         <td style="width: 60px;">
                                                             <input type="number" step="0.01" name="lines[<?= $line['id'] ?>]" class="qty-input" value="<?= number_format((float)$line['quantity'], 2, '.', '') ?>" min="0" onfocus="this.select(); this.dataset.oldQty = this.value;" onchange="updateLineQty(this, <?= $line['id'] ?>, '<?= htmlspecialchars($line['code'], ENT_QUOTES) ?>')" onkeydown="if(event.key === 'Enter'){ event.preventDefault(); this.blur(); }">
                                                         </td>
                                                         <td><?= htmlspecialchars($line['description']) ?></td>
+                                                        <td style="text-align: right; width: 100px;">
+                                                            <?php if (!$has_price): ?>
+                                                                <span style="color: #dc3545; font-weight: bold; font-size: 12px;">NEED TO PHONE</span>
+                                                            <?php endif; ?>
+                                                        </td>
                                                     </tr>
                                                 <?php endforeach; endif; ?>
                                             </table>
