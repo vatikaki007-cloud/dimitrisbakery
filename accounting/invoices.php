@@ -314,7 +314,7 @@ $routes = $pdo->query("SELECT id, route_name FROM acc_routes ORDER BY route_name
                 ?>
                     <tr>
                         <td><?= date('Y/m/d', strtotime($inv['date'])) ?></td>
-                        <td><a href="invoice_create.php?edit_id=<?= $inv['id'] ?>" class="link-blue"><?= htmlspecialchars($inv['invoice_no']) ?></a></td>
+                        <td><a href="invoice_create.php?edit_id=<?= $inv['id'] ?>" class="link-blue"><?= htmlspecialchars($inv['invoice_number'] ?: $inv['invoice_no']) ?></a></td>
                         <td><a href="invoice_create.php?edit_id=<?= $inv['id'] ?>" class="link-blue"><?= htmlspecialchars($inv['customer_name'] ?: 'cash sale') ?></a></td>
                         <td>R<?= number_format($amount_due, 2) ?></td>
                         <td>R<?= number_format($inv['total'], 2) ?></td>

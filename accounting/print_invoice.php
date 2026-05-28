@@ -61,7 +61,7 @@ try {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Tax Invoice <?= htmlspecialchars($invoice['invoice_no']) ?></title>
+    <title>Tax Invoice <?= htmlspecialchars($invoice['invoice_number'] ?: $invoice['invoice_no']) ?></title>
     <style>
         @page { size: A4; margin: 0; }
         body { font-family: "Courier New", Courier, monospace; font-size: 12px; color: #000; background: #fff; margin: 0; padding: 0; line-height: 1.4; }
@@ -162,7 +162,7 @@ try {
             <span class="doc-type">Copy Tax Invoice</span>
             <div class="doc-header-row">
                 <div class="doc-header-label">Document No</div>
-                <div class="doc-header-value"><?= htmlspecialchars($invoice['invoice_no'] ?? '') ?></div>
+                <div class="doc-header-value"><?= htmlspecialchars($invoice['invoice_number'] ?: $invoice['invoice_no'] ?? '') ?></div>
             </div>
             <div class="doc-header-row">
                 <div class="doc-header-label">Date</div>
