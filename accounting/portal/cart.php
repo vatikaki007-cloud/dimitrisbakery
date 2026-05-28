@@ -179,7 +179,7 @@ if (!empty($_SESSION['portal_last_order_id'])) {
                 let discAmt = priceExcl * (discPercent / 100);
                 let nettExcl = priceExcl - discAmt;
                 let lineTotalExcl = nettExcl * qty;
-                let lineTax = lineTotalExcl * (taxPercent / 100);
+                let lineTax = hasPrice ? (lineTotalExcl * (taxPercent / 100)) : 0;
                 
                 if (hasPrice) {
                     totalExcl += lineTotalExcl;
