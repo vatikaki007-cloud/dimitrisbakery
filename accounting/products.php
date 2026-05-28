@@ -80,26 +80,28 @@ $products = $pdo->query("SELECT * FROM acc_products ORDER BY code ASC")->fetchAl
     <meta charset="UTF-8">
     <title>Products</title>
     <style>
-        body { font-family: 'Inter', sans-serif; background: #f4f7f6; margin: 0; }
+        * { box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #f4f7f6; margin: 0; padding: 0; }
         .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
         h2 { color: #333; margin-bottom: 20px; }
 
         .search-bar { width: 100%; max-width: 300px; padding: 8px 12px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; box-sizing: border-box; }
 
-        table { width: 100%; border-collapse: collapse; background: white; font-size: 13px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-        th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #eee; }
-        th { background: #e9ecef; font-weight: normal; color: #333; border-bottom: 2px solid #ddd; }
+        .table-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+        table { width: 100%; border-collapse: collapse; background: white; font-size: 13px; min-width: 700px; }
+        th, td { padding: 12px 12px; text-align: left; border-bottom: 1px solid #eee; }
+        th { background: #e9ecef; font-weight: normal; color: #333; border-bottom: 2px solid #ddd; white-space: nowrap; }
         tbody tr:nth-child(odd)  { background-color: #f4f8ff; }
         tbody tr:nth-child(even) { background-color: #fff; }
 
-        .btn-edit   { background: #28a745; color: white; border: none; padding: 5px 12px; border-radius: 3px; font-size: 12px; cursor: pointer; }
+        .btn-edit   { background: #28a745; color: white; border: none; padding: 6px 12px; border-radius: 3px; font-size: 12px; cursor: pointer; }
         .btn-edit:hover   { background: #218838; }
-        .btn-delete { background: #dc3545; color: white; border: none; padding: 5px 12px; border-radius: 3px; font-size: 12px; cursor: pointer; margin-left: 5px; }
+        .btn-delete { background: #dc3545; color: white; border: none; padding: 6px 12px; border-radius: 3px; font-size: 12px; cursor: pointer; margin-left: 5px; }
         .btn-delete:hover { background: #c82333; }
 
         /* Modal */
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center; }
-        .modal-content { background: #fff; padding: 25px; border-radius: 5px; width: 420px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .modal-content { background: #fff; padding: 25px; border-radius: 5px; width: 420px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); max-height: 90vh; overflow-y: auto; }
         .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
         .modal-header h3 { margin: 0; font-size: 16px; color: #333; }
         .close-btn { background: none; border: none; font-size: 20px; cursor: pointer; color: #888; }
@@ -114,6 +116,28 @@ $products = $pdo->query("SELECT * FROM acc_products ORDER BY code ASC")->fetchAl
         .btn-save:hover   { background: #004494; }
         .btn-cancel-modal { background: #6c757d; color: white; border: none; padding: 8px 15px; border-radius: 3px; font-size: 13px; cursor: pointer; }
         .btn-cancel-modal:hover { background: #5a6268; }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .container { margin: 20px auto; padding: 0 15px; }
+            h2 { font-size: 18px; }
+            .search-bar { max-width: 100%; }
+            table { font-size: 12px; min-width: 100%; }
+            th, td { padding: 8px 10px; }
+            .btn-edit, .btn-delete { padding: 5px 10px; font-size: 11px; margin-left: 3px; }
+            .modal-content { width: 90%; max-width: 420px; padding: 20px; }
+        }
+        
+        @media (max-width: 480px) {
+            .container { margin: 15px auto; padding: 0 12px; }
+            h2 { font-size: 16px; margin-bottom: 15px; }
+            table { font-size: 11px; }
+            th, td { padding: 6px 8px; }
+            .btn-edit, .btn-delete { padding: 4px 8px; font-size: 10px; }
+            .modal-content { width: 95%; padding: 15px; }
+            .modal-header h3 { font-size: 14px; }
+            .form-group input { font-size: 12px; padding: 6px; }
+        }
     </style>
 </head>
 <body>
@@ -127,7 +151,8 @@ $products = $pdo->query("SELECT * FROM acc_products ORDER BY code ASC")->fetchAl
 
         <input type="text" id="searchInput" class="search-bar" placeholder="Search products..." onkeyup="filterTable()">
 
-        <table id="productsTable">
+        <div class="table-wrapper">
+            <table id="productsTable">
             <thead>
                 <tr>
                     <th>Code</th>
@@ -191,6 +216,7 @@ $products = $pdo->query("SELECT * FROM acc_products ORDER BY code ASC")->fetchAl
                 <?php endif; ?>
             </tbody>
         </table>
+        </div>
     </div>
 
     <!-- Modal -->

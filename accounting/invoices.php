@@ -151,28 +151,30 @@ $routes = $pdo->query("SELECT id, route_name FROM acc_routes ORDER BY route_name
     <meta charset="UTF-8">
     <title>Invoices</title>
     <style>
-        body { font-family: 'Inter', sans-serif; background: #f4f7f6; margin: 0; }
+        * { box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #f4f7f6; margin: 0; padding: 0; }
         .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
         
         /* Filter bar styles */
-        .filter-bar { background: #f8f9fa; padding: 15px; margin-bottom: 20px; display: flex; gap: 20px; align-items: center; flex-wrap: wrap; border-bottom: 1px solid #ddd; }
+        .filter-bar { background: #f8f9fa; padding: 15px; margin-bottom: 20px; display: flex; gap: 20px; align-items: center; flex-wrap: wrap; border-bottom: 1px solid #ddd; border-radius: 4px; }
         .filter-group { display: flex; align-items: center; gap: 8px; }
-        .filter-group label { font-size: 13px; color: #333; }
-        .filter-group select, .filter-group input { padding: 4px 8px; border: 1px solid #ccc; border-radius: 3px; font-size: 13px; }
-        .btn-search { padding: 5px 15px; background: #fff; border: 1px solid #ccc; border-radius: 3px; cursor: pointer; font-size: 13px; color: #333; }
+        .filter-group label { font-size: 13px; color: #333; white-space: nowrap; }
+        .filter-group select, .filter-group input { padding: 6px 8px; border: 1px solid #ccc; border-radius: 3px; font-size: 13px; }
+        .btn-search { padding: 6px 15px; background: #fff; border: 1px solid #ccc; border-radius: 3px; cursor: pointer; font-size: 13px; color: #333; }
         .btn-search:hover { background: #e9ecef; }
         
         .bulk-actions { background: #eef2f5; padding: 10px 15px; margin-bottom: 10px; display: flex; gap: 10px; align-items: center; border-radius: 4px; border: 1px solid #d1d9e0; }
 
-        table { width: 100%; border-collapse: collapse; background: white; font-size: 13px; }
-        th, td { padding: 10px 15px; text-align: left; border-bottom: 1px solid #eee; }
-        th { background: #e9ecef; font-weight: normal; color: #333; border-bottom: 2px solid #ddd; }
+        .table-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+        table { width: 100%; border-collapse: collapse; background: white; font-size: 13px; min-width: 600px; }
+        th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid #eee; }
+        th { background: #e9ecef; font-weight: normal; color: #333; border-bottom: 2px solid #ddd; white-space: nowrap; }
         
-        /* Striped rows matching screenshot */
+        /* Striped rows */
         tbody tr:nth-child(odd) { background-color: #f4f8ff; }
         tbody tr:nth-child(even) { background-color: #fff; }
 
-        .badge { padding: 3px 8px; border-radius: 3px; font-size: 11px; color: white; display: inline-block; min-width: 50px; text-align: center; cursor: pointer; position: relative; }
+        .badge { padding: 4px 8px; border-radius: 3px; font-size: 11px; color: white; display: inline-block; min-width: 50px; text-align: center; cursor: pointer; position: relative; }
         .badge-unpaid { background: #f0ad4e; }
         .badge-paid { background: #5cb85c; }
         .badge-overdue { background: #d9534f; }
@@ -180,7 +182,7 @@ $routes = $pdo->query("SELECT id, route_name FROM acc_routes ORDER BY route_name
         
         /* Dropdown Actions */
         .action-dropdown { position: relative; display: inline-block; }
-        .action-btn { background: #28a745; color: white; border: none; padding: 4px 10px; cursor: pointer; font-size: 12px; display: flex; align-items: center; justify-content: space-between; width: 70px; }
+        .action-btn { background: #28a745; color: white; border: none; padding: 5px 10px; cursor: pointer; font-size: 12px; display: flex; align-items: center; justify-content: space-between; min-width: 70px; }
         .action-btn::after { content: '▼'; font-size: 10px; margin-left: 5px; }
         .action-btn:hover { background: #218838; }
         .action-menu { display: none; position: absolute; right: 0; background-color: #fff; min-width: 120px; box-shadow: 0px 4px 8px rgba(0,0,0,0.1); z-index: 10; border: 1px solid #ddd; }
@@ -191,7 +193,7 @@ $routes = $pdo->query("SELECT id, route_name FROM acc_routes ORDER BY route_name
         
         /* Status Dropdown */
         .status-dropdown { display: none; position: absolute; left: 0; top: 100%; background: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.2); z-index: 20; border: 1px solid #ccc; border-radius: 3px; min-width: 80px; }
-        .status-dropdown button { display: block; width: 100%; padding: 5px; border: none; background: none; text-align: left; cursor: pointer; font-size: 11px; }
+        .status-dropdown button { display: block; width: 100%; padding: 6px; border: none; background: none; text-align: left; cursor: pointer; font-size: 11px; }
         .status-dropdown button:hover { background: #f0f0f0; }
         
         .sent-icon { font-size: 14px; color: #0056b3; text-align: center; font-weight: bold; }
@@ -199,6 +201,32 @@ $routes = $pdo->query("SELECT id, route_name FROM acc_routes ORDER BY route_name
         
         .link-blue { color: #0056b3; text-decoration: none; text-transform: uppercase; }
         .link-blue:hover { text-decoration: underline; }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .container { margin: 20px auto; padding: 0 15px; }
+            .filter-bar { flex-direction: column; align-items: stretch; gap: 10px; padding: 12px; }
+            .filter-group { flex-direction: column; align-items: stretch; }
+            .filter-group label { margin-bottom: 4px; }
+            .filter-group select, .filter-group input { width: 100%; }
+            .btn-search { width: 100%; }
+            
+            table { font-size: 12px; }
+            th, td { padding: 8px 10px; }
+            .badge { padding: 3px 6px; font-size: 10px; }
+            .action-btn { padding: 4px 8px; font-size: 11px; min-width: 60px; }
+        }
+        
+        @media (max-width: 480px) {
+            .container { margin: 15px auto; padding: 0 12px; }
+            .filter-bar { padding: 10px; }
+            
+            table { font-size: 11px; }
+            th, td { padding: 6px 8px; }
+            .link-blue { font-size: 11px; }
+            .badge { padding: 2px 5px; font-size: 9px; min-width: 45px; }
+            .action-btn { padding: 3px 6px; font-size: 10px; min-width: 55px; }
+        }
     </style>
 </head>
 <body>
@@ -264,7 +292,8 @@ $routes = $pdo->query("SELECT id, route_name FROM acc_routes ORDER BY route_name
     </form>
 
     <div style="padding: 0 15px;">
-        <table>
+        <div class="table-wrapper">
+            <table>
             <thead>
                 <tr>
                     <th>Date</th>
@@ -328,6 +357,7 @@ $routes = $pdo->query("SELECT id, route_name FROM acc_routes ORDER BY route_name
                 <?php endif; ?>
             </tbody>
         </table>
+        </div>
     </div>
 
     <!-- Hidden form for bulk status updates -->

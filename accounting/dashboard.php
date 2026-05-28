@@ -61,10 +61,12 @@ $unpaid_amt = $pdo->query("SELECT SUM(total) FROM acc_invoices WHERE status = 'u
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accounting Dashboard</title>
     <style>
-        body { font-family: 'Inter', sans-serif; background: #f4f7f6; margin: 0; }
+        * { box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #f4f7f6; margin: 0; padding: 0; }
         .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
-        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        h1 { color: #333; margin: 0; }
+        
+        .header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; flex-wrap: wrap; gap: 15px; }
+        h1 { color: #333; margin: 0; font-size: 24px; }
         .fy-selector { background: white; padding: 10px 15px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
         .fy-selector select { padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-family: inherit; font-size: 14px; }
         
@@ -72,10 +74,32 @@ $unpaid_amt = $pdo->query("SELECT SUM(total) FROM acc_invoices WHERE status = 'u
         .card { background: white; padding: 25px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); text-align: center; border-top: 4px solid #0056b3; }
         .card h3 { margin: 0 0 10px 0; color: #555; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; }
         .card .stat { font-size: 36px; font-weight: bold; color: #333; margin-bottom: 15px; }
-        .card a { display: inline-block; background: #eef2f9; color: #0056b3; padding: 8px 15px; border-radius: 4px; text-decoration: none; font-size: 14px; font-weight: 500; }
+        .card a { display: inline-block; background: #eef2f9; color: #0056b3; padding: 10px 15px; border-radius: 4px; text-decoration: none; font-size: 14px; font-weight: 500; border: none; cursor: pointer; }
         .card a:hover { background: #d0e1f9; }
         
         .fy-info { font-size: 14px; color: #666; margin-top: 5px; }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .container { margin: 20px auto; padding: 0 15px; }
+            h1 { font-size: 20px; }
+            .header { flex-direction: column; align-items: stretch; }
+            .fy-selector { width: 100%; }
+            .fy-selector select { width: 100%; }
+            .card-grid { grid-template-columns: 1fr; gap: 15px; margin-top: 20px; }
+            .card { padding: 20px; }
+            .card .stat { font-size: 28px; }
+            .card a { width: 100%; display: block; padding: 12px; font-size: 13px; }
+        }
+        
+        @media (max-width: 480px) {
+            .container { margin: 15px auto; padding: 0 12px; }
+            h1 { font-size: 18px; }
+            .card { padding: 15px; }
+            .card h3 { font-size: 12px; }
+            .card .stat { font-size: 24px; margin-bottom: 10px; }
+            .fy-info { font-size: 12px; }
+        }
     </style>
 </head>
 <body>
