@@ -80,6 +80,7 @@ if ($_SESSION['acc_role'] === 'admin') {
         top: 0; 
         z-index: 1000;
         min-height: 50px;
+        zoom: 100% !important;
     }
     
     .navbar-brand { 
@@ -192,37 +193,50 @@ if ($_SESSION['acc_role'] === 'admin') {
         text-align: center; 
     }
 
-    /* Mobile Responsive */
-    @media (max-width: 1200px) {
-        .nav-menu a { 
-            padding: 15px 10px; 
-            font-size: 13px; 
-        }
-    }
-
-    @media (max-width: 768px) {
+    /* Desktop - show all links */
+    @media (min-width: 769px) {
         .hamburger { 
-            display: flex; 
+            display: none !important; 
         }
         
         .nav-menu { 
-            position: fixed; 
+            position: static !important;
+            max-height: none !important;
+            overflow: visible !important;
+            background: transparent !important;
+        }
+        
+        .nav-menu a { 
+            padding: 15px 12px; 
+            font-size: 14px;
+            border: none !important;
+        }
+    }
+
+    /* Mobile - hamburger menu */
+    @media (max-width: 768px) {
+        .hamburger { 
+            display: flex !important; 
+        }
+        
+        .nav-menu { 
+            position: fixed !important; 
             top: 50px; 
             left: 0; 
             right: 0; 
             background: #004494; 
             flex-direction: column; 
             align-items: stretch; 
-            max-height: 0; 
-            overflow: hidden; 
+            max-height: 0 !important; 
+            overflow: hidden !important; 
             transition: max-height 0.3s ease; 
             z-index: 999;
             gap: 0;
         }
         
         .nav-menu.active { 
-            max-height: 600px; 
-            overflow-y: auto; 
+            max-height: 600px !important; 
+            overflow-y: auto !important; 
         }
         
         .nav-menu a { 
