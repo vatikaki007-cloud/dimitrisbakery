@@ -346,6 +346,7 @@ foreach ($all_calls as $c) {
         
         .btn-dispatch { background: #17a2b8; color: white; padding: 8px 15px; border-radius: 4px; border: none; cursor: pointer; font-weight: bold; font-size: 13px; flex: 1; }
         .btn-dispatch:hover { background: #138496; }
+        .btn-dispatch:disabled { background: #ccc; color: #666; cursor: not-allowed; opacity: 0.6; }
         .btn-edit { background: #6c757d; color: white; padding: 8px 15px; border-radius: 4px; border: none; cursor: pointer; text-decoration: none; font-size: 13px; text-align: center; }
         .btn-edit:hover { background: #5a6268; }
         
@@ -479,11 +480,13 @@ foreach ($all_calls as $c) {
                                             <table class="order-lines">
                                                 <?php 
                                                 $lines = $lines_by_invoice[$o['id']] ?? [];
+                                                $has_missing_prices = false;
                                                 if(empty($lines)): ?>
                                                     <tr><td colspan="3" style="color:#aaa; font-style:italic;">No items found.</td></tr>
                                                 <?php else: 
                                                     foreach ($lines as $line): 
                                                         $has_price = $line['has_price'] ?? true;
+                                                        if (!$has_price) $has_missing_prices = true;
                                                     ?>
                                                     <tr>
                                                         <td style="width: 60px;">
@@ -499,9 +502,14 @@ foreach ($all_calls as $c) {
                                                 <?php endforeach; endif; ?>
                                             </table>
                                             <div style="display:flex; gap:10px; margin-top:10px;">
-                                                <button type="submit" class="btn-dispatch">🖨 Print & Finalize</button>
+                                                <button type="submit" class="btn-dispatch" <?= $has_missing_prices ? 'disabled' : '' ?> title="<?= $has_missing_prices ? 'Cannot finalize: items need pricing' : 'Print and finalize this order' ?>">🖨 Print & Finalize</button>
                                                 <a href="invoice_create.php?edit_id=<?= $o['id'] ?>&from_orders=1" class="btn-edit">✎ Edit</a>
                                             </div>
+                                            <?php if ($has_missing_prices): ?>
+                                                <div style="background: #fff3cd; color: #856404; padding: 10px; border-radius: 4px; margin-top: 10px; font-size: 12px; border: 1px solid #ffeeba;">
+                                                    ⚠️ <strong>Cannot finalize:</strong> Some items need pricing. Click Edit to add prices before finalizing.
+                                                </div>
+                                            <?php endif; ?>
                                         </form>
                                     </li>
                                 <?php endforeach; ?>
