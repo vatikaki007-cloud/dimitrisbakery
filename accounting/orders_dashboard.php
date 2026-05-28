@@ -224,8 +224,12 @@ if (!empty($order_ids)) {
             }
         }
         
-        // Check if this product has been invoiced before for this customer (only completed invoices, not orders)
+        // Check if this product has been invoiced before for this customer (completed invoices or current order with price)
         if ($customer_id) {
+            // First check: does this line have a price in the current invoice?
+            $has_price_in_current = (float)$line['unit_price'] > 0;
+            
+            // Second check: has this product been invoiced before (INV- invoices only)?
             $stmt_check = $pdo->prepare("
                 SELECT COUNT(*) as count FROM acc_invoice_lines l
                 JOIN acc_invoices i ON l.invoice_id = i.id
@@ -233,7 +237,10 @@ if (!empty($order_ids)) {
             ");
             $stmt_check->execute([$customer_id, $line['code'], $invoice_id]);
             $result = $stmt_check->fetch(PDO::FETCH_ASSOC);
-            $line['has_price'] = $result['count'] > 0;
+            $has_price_in_history = $result['count'] > 0;
+            
+            // Show NEED TO PHONE only if no price in current line AND no price history
+            $line['has_price'] = $has_price_in_current || $has_price_in_history;
         } else {
             $line['has_price'] = true;
         }
