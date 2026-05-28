@@ -249,7 +249,7 @@ $stmt_bakers = $pdo->prepare("
     SELECT l.code, l.description, SUM(l.quantity) as total_qty
     FROM acc_invoice_lines l
     JOIN acc_invoices i ON l.invoice_id = i.id
-    WHERE i.type = 'customer' AND i.date = ? AND i.bakers_sheet_id IS NULL
+    WHERE i.type = 'customer' AND i.date = ? AND i.bakers_sheet_id IS NULL AND i.status = 'order'
     GROUP BY l.code, l.description
     HAVING total_qty > 0
     ORDER BY l.code ASC
