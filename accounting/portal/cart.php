@@ -59,12 +59,15 @@ if (!empty($_SESSION['portal_last_order_id'])) {
         .item-row { display: flex; justify-content: space-between; align-items: flex-start; }
         .item-title { font-weight: bold; color: #333; font-size: 15px; }
         .item-price { color: #0056b3; font-weight: bold; }
+        .item-price.no-price { color: #ff9800; font-weight: bold; font-size: 13px; }
         .item-remove { color: #dc3545; background: none; border: none; padding: 5px; font-size: 12px; font-weight: bold; cursor: pointer; }
         
         .add-controls { display: flex; align-items: center; gap: 10px; }
         .qty-btn { width: 30px; height: 30px; border-radius: 4px; border: 1px solid #ccc; background: white; font-size: 16px; font-weight: bold; color: #333; cursor: pointer; display: flex; align-items: center; justify-content: center; }
         .qty-input { width: 40px; height: 30px; text-align: center; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; font-weight: bold; }
-        .item-subtotal { font-weight: bold; margin-left: auto; }
+        .item-subtotal { font-weight: bold; margin-left: auto; cursor: pointer; padding: 5px 10px; border-radius: 4px; transition: background 0.2s; }
+        .item-subtotal:hover { background: #f0f0f0; }
+        .item-subtotal.editable { background: #e3f2fd; }
 
         .totals { background: white; padding: 15px; border-radius: 8px; margin-top: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
         .total-row { display: flex; justify-content: space-between; padding: 5px 0; font-size: 14px; }
@@ -78,6 +81,17 @@ if (!empty($_SESSION['portal_last_order_id'])) {
         .success-title { font-size: 24px; font-weight: bold; color: #333; margin-bottom: 10px; }
         .success-msg { color: #666; margin-bottom: 30px; }
         .btn-continue { background: #0056b3; color: white; text-decoration: none; padding: 12px 30px; border-radius: 4px; font-weight: bold; }
+
+        /* Quantity Edit Modal */
+        .qty-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 300; align-items: center; justify-content: center; }
+        .qty-modal.active { display: flex; }
+        .qty-modal-content { background: white; padding: 25px; border-radius: 8px; width: 90%; max-width: 300px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
+        .qty-modal-title { font-size: 16px; font-weight: bold; color: #333; margin-bottom: 15px; }
+        .qty-modal-input { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; box-sizing: border-box; margin-bottom: 15px; }
+        .qty-modal-buttons { display: flex; gap: 10px; }
+        .qty-modal-btn { flex: 1; padding: 10px; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 14px; }
+        .qty-modal-btn.save { background: #28a745; color: white; }
+        .qty-modal-btn.cancel { background: #6c757d; color: white; }
 
         /* Bottom Nav */
         .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: white; display: flex; border-top: 1px solid #ddd; box-shadow: 0 -2px 10px rgba(0,0,0,0.05); z-index: 90; }
@@ -112,6 +126,17 @@ if (!empty($_SESSION['portal_last_order_id'])) {
         <a href="cart.php" class="btn-continue">Back to Cart</a>
     </div>
 
+    <div class="qty-modal" id="qty-modal">
+        <div class="qty-modal-content">
+            <div class="qty-modal-title" id="qty-modal-title">Edit Quantity</div>
+            <input type="number" class="qty-modal-input" id="qty-modal-input" min="1" value="1">
+            <div class="qty-modal-buttons">
+                <button class="qty-modal-btn cancel" onclick="closeQtyModal()">Cancel</button>
+                <button class="qty-modal-btn save" onclick="saveQtyModal()">Save</button>
+            </div>
+        </div>
+    </div>
+
     <div class="bottom-nav">
         <a href="products.php" class="nav-item">Products</a>
         <a href="cart.php" class="nav-item active">Cart</a>
@@ -119,6 +144,7 @@ if (!empty($_SESSION['portal_last_order_id'])) {
 
     <script>
         let cart = JSON.parse(localStorage.getItem('portal_cart')) || [];
+        let currentEditIndex = -1;
         
         <?php if (!empty($_SESSION['portal_last_order_id'])): ?>
         let cartInitialized = sessionStorage.getItem('cart_initialized');
@@ -147,17 +173,30 @@ if (!empty($_SESSION['portal_last_order_id'])) {
                 let discPercent = parseFloat(item.disc_percent || 0);
                 let taxPercent = parseFloat(item.tax_percent || 0);
                 
+                // Check if price exists (unit_price > 0)
+                let hasPrice = priceExcl > 0;
+                
                 let discAmt = priceExcl * (discPercent / 100);
                 let nettExcl = priceExcl - discAmt;
                 let lineTotalExcl = nettExcl * qty;
                 let lineTax = lineTotalExcl * (taxPercent / 100);
                 
-                totalExcl += lineTotalExcl;
-                totalTax += lineTax;
+                if (hasPrice) {
+                    totalExcl += lineTotalExcl;
+                    totalTax += lineTax;
+                }
 
                 let photoHtml = item.photo ? 
                     `<img src="../product_images/${item.photo}" style="width: 50px; height: 50px; border-radius: 8px; object-fit: cover; margin-right: 15px; background: #eee; flex-shrink: 0;">` :
                     `<div style="width: 50px; height: 50px; border-radius: 8px; background: #eee; margin-right: 15px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #aaa; text-align: center; flex-shrink: 0;">No Image</div>`;
+
+                let priceDisplay = hasPrice ? 
+                    `<div class="item-price">R ${nettExcl.toFixed(2)} / ${item.unit}</div>` :
+                    `<div class="item-price no-price">Custom Quote Required<br>We'll contact you with pricing</div>`;
+
+                let subtotalDisplay = hasPrice ?
+                    `<div class="item-subtotal" onclick="openQtyModal(${index}, ${qty})" title="Click to edit quantity">R ${lineTotalExcl.toFixed(2)}</div>` :
+                    `<div class="item-subtotal" style="color: #ff9800; cursor: default;" title="Awaiting pricing">TBD</div>`;
 
                 html += `
                     <div class="cart-item">
@@ -166,7 +205,7 @@ if (!empty($_SESSION['portal_last_order_id'])) {
                                 ${photoHtml}
                                 <div>
                                     <div class="item-title">${item.description}</div>
-                                    <div class="item-price">R ${nettExcl.toFixed(2)} / ${item.unit}</div>
+                                    ${priceDisplay}
                                 </div>
                             </div>
                             <button class="item-remove" onclick="removeItem(${index})">Remove</button>
@@ -177,7 +216,7 @@ if (!empty($_SESSION['portal_last_order_id'])) {
                                 <input type="number" class="qty-input" value="${qty}" readonly>
                                 <button class="qty-btn" onclick="updateCartQty(${index}, 1)">+</button>
                             </div>
-                            <div class="item-subtotal">R ${lineTotalExcl.toFixed(2)}</div>
+                            ${subtotalDisplay}
                         </div>
                     </div>
                 `;
@@ -196,6 +235,45 @@ if (!empty($_SESSION['portal_last_order_id'])) {
 
             container.innerHTML = html;
         }
+
+        function openQtyModal(index, currentQty) {
+            currentEditIndex = index;
+            document.getElementById('qty-modal-title').textContent = `Edit Quantity - ${cart[index].description}`;
+            document.getElementById('qty-modal-input').value = currentQty;
+            document.getElementById('qty-modal').classList.add('active');
+            document.getElementById('qty-modal-input').focus();
+            document.getElementById('qty-modal-input').select();
+        }
+
+        function closeQtyModal() {
+            document.getElementById('qty-modal').classList.remove('active');
+            currentEditIndex = -1;
+        }
+
+        function saveQtyModal() {
+            if (currentEditIndex >= 0) {
+                let newQty = parseInt(document.getElementById('qty-modal-input').value) || 1;
+                if (newQty < 1) newQty = 1;
+                cart[currentEditIndex].quantity = newQty;
+                saveAndRender();
+            }
+            closeQtyModal();
+        }
+
+        // Close modal when clicking outside
+        document.addEventListener('click', function(e) {
+            let modal = document.getElementById('qty-modal');
+            if (e.target === modal) {
+                closeQtyModal();
+            }
+        });
+
+        // Allow Enter key to save
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && document.getElementById('qty-modal').classList.contains('active')) {
+                saveQtyModal();
+            }
+        });
 
         function updateCartQty(index, delta) {
             cart[index].quantity += delta;
