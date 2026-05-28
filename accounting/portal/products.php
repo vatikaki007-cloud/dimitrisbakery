@@ -133,7 +133,7 @@ unset($p); // Fix PHP reference bug!
                         'tax_percent' => $p['tax_percent'],
                         'disc_percent' => $p['disc_percent'],
                         'nett_price' => $nett_excl,
-                        'has_price' => $has_price
+                        'has_price' => $has_price,
                         'photo' => $p['photo']
                     ])) ?>)">Add</button>
                 </div>
