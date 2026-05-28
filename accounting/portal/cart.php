@@ -64,7 +64,7 @@ if (!empty($_SESSION['portal_last_order_id'])) {
         
         .add-controls { display: flex; align-items: center; gap: 10px; }
         .qty-btn { width: 30px; height: 30px; border-radius: 4px; border: 1px solid #ccc; background: white; font-size: 16px; font-weight: bold; color: #333; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-        .qty-input { width: 40px; height: 30px; text-align: center; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; font-weight: bold; }
+        .qty-input { width: 40px; height: 30px; text-align: center; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; font-weight: bold; cursor: pointer; }
         .item-subtotal { font-weight: bold; margin-left: auto; cursor: pointer; padding: 5px 10px; border-radius: 4px; transition: background 0.2s; }
         .item-subtotal:hover { background: #f0f0f0; }
         .item-subtotal.editable { background: #e3f2fd; }
@@ -213,7 +213,7 @@ if (!empty($_SESSION['portal_last_order_id'])) {
                         <div class="item-row" style="align-items:center; margin-top: 10px;">
                             <div class="add-controls">
                                 <button class="qty-btn" onclick="updateCartQty(${index}, -1)">-</button>
-                                <input type="number" class="qty-input" value="${qty}" readonly>
+                                <input type="number" class="qty-input" value="${qty}" onclick="openQtyModal(${index}, ${qty})" readonly>
                                 <button class="qty-btn" onclick="updateCartQty(${index}, 1)">+</button>
                             </div>
                             ${subtotalDisplay}
