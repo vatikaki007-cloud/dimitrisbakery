@@ -974,9 +974,8 @@ require_once __DIR__ . '/navbar.php';
                 document.getElementById('invoice_status').value = 'order';
                 document.getElementById('auto_print').checked = false;
             } else if (actionType === 'done') {
-                if (document.getElementById('invoice_status').value === 'order') {
-                    document.getElementById('invoice_status').value = 'unpaid';
-                }
+                // Keep status as 'order' - don't change it to 'unpaid'
+                // Status will only change to 'unpaid' when invoice is finalized/printed
             }
 
             const form = document.getElementById('invoiceForm');
