@@ -174,7 +174,7 @@ $routes = $pdo->query("SELECT id, route_name FROM acc_routes ORDER BY route_name
         tbody tr:nth-child(odd) { background-color: #f4f8ff; }
         tbody tr:nth-child(even) { background-color: #fff; }
 
-        .badge { padding: 4px 8px; border-radius: 3px; font-size: 11px; color: white; display: inline-block; min-width: 50px; text-align: center; cursor: pointer; position: relative; }
+        .badge { padding: 4px 8px; border-radius: 3px; font-size: 11px; color: white; display: inline-block; min-width: 50px; text-align: center; cursor: pointer; position: relative; z-index: 10; }
         .badge-unpaid { background: #f0ad4e; }
         .badge-paid { background: #5cb85c; }
         .badge-overdue { background: #d9534f; }
@@ -192,7 +192,7 @@ $routes = $pdo->query("SELECT id, route_name FROM acc_routes ORDER BY route_name
         .action-dropdown:focus-within .action-menu { display: block; }
         
         /* Status Dropdown */
-        .status-dropdown { display: none; position: absolute; left: 0; top: 100%; background: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.2); z-index: 20; border: 1px solid #ccc; border-radius: 3px; min-width: 80px; }
+        .status-dropdown { display: none; position: fixed; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.2); z-index: 1001; border: 1px solid #ccc; border-radius: 3px; min-width: 100px; }
         .status-dropdown button { display: block; width: 100%; padding: 6px; border: none; background: none; text-align: left; cursor: pointer; font-size: 11px; }
         .status-dropdown button:hover { background: #f0f0f0; }
         
@@ -378,8 +378,14 @@ $routes = $pdo->query("SELECT id, route_name FROM acc_routes ORDER BY route_name
             if (dropdown.style.display === 'block') {
                 dropdown.style.display = 'none';
             } else {
+                // Close all other dropdowns
                 document.querySelectorAll('.status-dropdown').forEach(d => d.style.display = 'none');
                 dropdown.style.display = 'block';
+                
+                // Position the dropdown using fixed positioning
+                let rect = el.getBoundingClientRect();
+                dropdown.style.top = (rect.bottom + window.scrollY) + 'px';
+                dropdown.style.left = (rect.left + window.scrollX) + 'px';
             }
         }
         
