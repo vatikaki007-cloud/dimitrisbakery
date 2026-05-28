@@ -1,6 +1,7 @@
 <?php 
 require_once __DIR__ . '/config.php';
 if (session_status() === PHP_SESSION_NONE) { session_start(); }
+require_once __DIR__ . '/navbar.php';
 $pdo = get_db();
 
 // Ensure email_sent column exists
@@ -66,8 +67,6 @@ if (isset($_GET['ajax_status_update'])) {
     }
     exit;
 }
-
-require_once __DIR__ . '/navbar.php';
 
 // Fetch filters
 $year_filter = $_GET['year'] ?? date('Y');
@@ -149,6 +148,7 @@ $routes = $pdo->query("SELECT id, route_name FROM acc_routes ORDER BY route_name
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invoices</title>
     <style>
         * { box-sizing: border-box; }
@@ -230,6 +230,7 @@ $routes = $pdo->query("SELECT id, route_name FROM acc_routes ORDER BY route_name
     </style>
 </head>
 <body>
+    <?php require_once __DIR__ . '/navbar.php'; ?>
     <form method="GET" class="filter-bar">
         <div class="filter-group">
             <label>Year:</label>

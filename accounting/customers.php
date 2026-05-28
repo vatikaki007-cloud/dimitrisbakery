@@ -1,6 +1,7 @@
 <?php 
 require_once __DIR__ . '/config.php';
 if (session_status() === PHP_SESSION_NONE) { session_start(); }
+require_once __DIR__ . '/navbar.php';
 $pdo = get_db();
 
 try {
@@ -120,6 +121,7 @@ unset($_SESSION['cust_msg'], $_SESSION['cust_error']);
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customers</title>
     <style>
         * { box-sizing: border-box; }
@@ -193,6 +195,7 @@ unset($_SESSION['cust_msg'], $_SESSION['cust_error']);
     </style>
 </head>
 <body>
+    <?php require_once __DIR__ . '/navbar.php'; ?>
     <div class="container">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
             <div style="display: flex; align-items: center; gap: 15px;">
