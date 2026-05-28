@@ -326,7 +326,7 @@ $routes = $pdo->query("SELECT id, route_name FROM acc_routes ORDER BY route_name
                                 if ($inv['status'] === 'overdue') $badge_class = 'badge-overdue';
                                 if ($inv['status'] === 'order') $badge_class = 'badge-order';
                                 ?>
-                                <div class="badge <?= $badge_class ?>" onclick="toggleStatusDropdown(this)">
+                                <div class="badge <?= $badge_class ?>" onclick="toggleStatusDropdown(this, event)">
                                     <span class="status-text"><?= ucfirst($inv['status']) ?></span>
                                     <div class="status-dropdown">
                                         <button type="button" onclick="updateStatus(<?= $inv['id'] ?>, 'order', event)">Order</button>
@@ -373,7 +373,8 @@ $routes = $pdo->query("SELECT id, route_name FROM acc_routes ORDER BY route_name
             document.querySelectorAll('.invoice-checkbox').forEach(cb => cb.checked = source.checked);
         }
         
-        function toggleStatusDropdown(el) {
+        function toggleStatusDropdown(el, event) {
+            event.stopPropagation();
             let dropdown = el.querySelector('.status-dropdown');
             if (dropdown.style.display === 'block') {
                 dropdown.style.display = 'none';
@@ -390,7 +391,9 @@ $routes = $pdo->query("SELECT id, route_name FROM acc_routes ORDER BY route_name
         }
         
         function updateStatus(id, newStatus, event) {
+            event.preventDefault();
             event.stopPropagation();
+            
             let checkbox = document.querySelector(`.invoice-checkbox[value="${id}"]`);
             if (checkbox && checkbox.checked) {
                 document.getElementById('bulkNewStatus').value = newStatus;
@@ -406,15 +409,27 @@ $routes = $pdo->query("SELECT id, route_name FROM acc_routes ORDER BY route_name
                 document.getElementById('bulkForm').submit();
                 return;
             }
+            
             let formData = new FormData();
             formData.append('id', id);
             formData.append('status', newStatus);
+            
             fetch('invoices.php?ajax_status_update=1', {
                 method: 'POST',
                 body: formData
-            }).then(r => r.json()).then(res => {
-                if(res.success) { window.location.reload(); }
-                else { alert('Failed to update status'); }
+            })
+            .then(r => r.json())
+            .then(res => {
+                if(res.success) { 
+                    window.location.reload(); 
+                }
+                else { 
+                    alert('Failed to update status'); 
+                }
+            })
+            .catch(err => {
+                console.error('Error:', err);
+                alert('Error updating status');
             });
         }
         
