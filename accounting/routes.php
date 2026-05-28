@@ -1,6 +1,7 @@
 <?php 
 require_once __DIR__ . '/config.php';
 if (session_status() === PHP_SESSION_NONE) { session_start(); }
+require_once __DIR__ . '/navbar.php';
 $pdo = get_db();
 
 // Handle Delete
@@ -56,6 +57,7 @@ $routes = $pdo->query("
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Delivery Routes</title>
     <style>
         body { font-family: 'Inter', sans-serif; background: #f4f7f6; margin: 0; }
@@ -93,6 +95,7 @@ $routes = $pdo->query("
     </style>
 </head>
 <body>
+    <?php require_once __DIR__ . '/navbar.php'; ?>
     <div class="container">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
             <h2 style="margin: 0;">Delivery Routes</h2>

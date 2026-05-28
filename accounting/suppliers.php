@@ -1,6 +1,7 @@
 <?php 
 require_once __DIR__ . '/config.php';
 if (session_status() === PHP_SESSION_NONE) { session_start(); }
+require_once __DIR__ . '/navbar.php';
 $pdo = get_db();
 
 try {
@@ -68,6 +69,7 @@ $suppliers = $pdo->query("SELECT * FROM acc_suppliers ORDER BY name ASC")->fetch
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>suppliers</title>
     <style>
         body { font-family: 'Inter', sans-serif; background: #f4f7f6; margin: 0; }
@@ -108,6 +110,7 @@ $suppliers = $pdo->query("SELECT * FROM acc_suppliers ORDER BY name ASC")->fetch
     </style>
 </head>
 <body>
+    <?php require_once __DIR__ . '/navbar.php'; ?>
     <div class="container">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
             <div style="display: flex; align-items: center; gap: 15px;">

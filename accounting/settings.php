@@ -5,6 +5,7 @@
  */
 require_once __DIR__ . '/config.php';
 if (session_status() === PHP_SESSION_NONE) { session_start(); }
+require_once __DIR__ . '/navbar.php';
 
 $pdo = get_db();
 
@@ -82,6 +83,7 @@ require_once __DIR__ . '/navbar.php';
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accounting Settings</title>
     <style>
         body { font-family: 'Inter', sans-serif; background: #f4f7f6; margin: 0; }
@@ -110,6 +112,7 @@ require_once __DIR__ . '/navbar.php';
     </style>
 </head>
 <body>
+    <?php require_once __DIR__ . '/navbar.php'; ?>
     <div class="container">
         <h2>Settings</h2>
         

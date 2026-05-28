@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/config.php';
 if (session_status() === PHP_SESSION_NONE) { session_start(); }
+require_once __DIR__ . '/navbar.php';
 $pdo = get_db();
 
 // Ensure database columns exist
@@ -281,6 +282,7 @@ foreach ($all_calls as $c) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daily Orders Dashboard</title>
     <style>
         body { font-family: 'Inter', sans-serif; background: #f4f7f6; margin: 0; padding-bottom: 50px; }
@@ -358,6 +360,7 @@ foreach ($all_calls as $c) {
     </style>
 </head>
 <body>
+    <?php require_once __DIR__ . '/navbar.php'; ?>
     <div class="container">
         <div style="display: flex; justify-content: space-between; align-items: center;">
             <h2>Daily Orders Dashboard</h2>
