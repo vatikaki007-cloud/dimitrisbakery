@@ -224,12 +224,12 @@ if (!empty($order_ids)) {
             }
         }
         
-        // Check if this product has been invoiced before for this customer
+        // Check if this product has been invoiced before for this customer (in completed/paid invoices)
         if ($customer_id) {
             $stmt_check = $pdo->prepare("
                 SELECT COUNT(*) as count FROM acc_invoice_lines l
                 JOIN acc_invoices i ON l.invoice_id = i.id
-                WHERE i.entity_id = ? AND l.code = ? AND i.id != ?
+                WHERE i.entity_id = ? AND l.code = ? AND i.id != ? AND i.status IN ('paid', 'completed')
             ");
             $stmt_check->execute([$customer_id, $line['code'], $invoice_id]);
             $result = $stmt_check->fetch(PDO::FETCH_ASSOC);
