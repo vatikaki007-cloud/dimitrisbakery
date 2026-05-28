@@ -51,11 +51,12 @@ $user_zoom = (int)($stmt->fetchColumn() ?: 100);
 
 ?>
 <style>
-    .navbar { background: #0056b3; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; color: white; position: sticky; top: 0; z-index: 1000; }
+    * { box-sizing: border-box; }
+    .navbar { background: #0056b3; padding: 12px 15px; display: flex; justify-content: space-between; align-items: center; color: white; position: sticky; top: 0; z-index: 1000; flex-wrap: wrap; }
     .navbar a { color: white; text-decoration: none; margin-right: 20px; font-size: 16px; position: relative; }
     .navbar a:hover { text-decoration: underline; }
     .navbar .brand { font-size: 20px; font-weight: bold; }
-    .nav-links { display: flex; align-items: center; }
+    .nav-links { display: flex; align-items: center; gap: 5px; }
     .user-info { font-size: 14px; margin-right: 20px; color: #d0e1f9; }
     .btn-logout { background: #d9534f; padding: 6px 12px; border-radius: 4px; text-decoration: none; color: white; }
     .btn-logout:hover { background: #c9302c; text-decoration: none; }
@@ -65,6 +66,40 @@ $user_zoom = (int)($stmt->fetchColumn() ?: 100);
     .zoom-btn { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.35); color: white; width: 28px; height: 28px; border-radius: 4px; cursor: pointer; font-size: 18px; line-height: 1; display: flex; align-items: center; justify-content: center; padding: 0; transition: background 0.15s; }
     .zoom-btn:hover { background: rgba(255,255,255,0.3); }
     .zoom-label { font-size: 12px; color: #d0e1f9; min-width: 36px; text-align: center; }
+
+    /* Hamburger menu */
+    .hamburger { display: none; background: none; border: none; color: white; font-size: 24px; cursor: pointer; padding: 0; width: 32px; height: 32px; align-items: center; justify-content: center; }
+    .nav-menu { display: flex; align-items: center; }
+
+    /* Mobile Responsive */
+    @media (max-width: 1024px) {
+        .navbar a { margin-right: 12px; font-size: 14px; }
+        .user-info { font-size: 12px; margin-right: 12px; }
+        .zoom-controls { margin-right: 12px; }
+    }
+
+    @media (max-width: 768px) {
+        .navbar { padding: 10px 12px; }
+        .hamburger { display: flex; }
+        .nav-menu { position: absolute; top: 100%; left: 0; right: 0; background: #004494; flex-direction: column; align-items: stretch; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+        .nav-menu.active { max-height: 500px; }
+        .nav-menu a { margin: 0; padding: 12px 15px; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 14px; }
+        .nav-menu a:hover { background: rgba(255,255,255,0.1); text-decoration: none; }
+        .nav-menu .user-info { margin: 0; padding: 12px 15px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .nav-menu .btn-logout { margin: 0; padding: 12px 15px; border-radius: 0; }
+        .nav-menu .zoom-controls { margin: 0; padding: 12px 15px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .navbar a { margin-right: 0; }
+        .user-info { display: none; }
+        .zoom-controls { display: none; }
+        .btn-logout { display: none; }
+        .brand a { font-size: 16px; }
+    }
+
+    @media (max-width: 480px) {
+        .navbar { padding: 8px 10px; }
+        .brand a { font-size: 14px; }
+        .hamburger { width: 28px; height: 28px; font-size: 20px; }
+    }
 </style>
 
 <!-- Apply saved zoom before page renders -->
@@ -73,11 +108,27 @@ $user_zoom = (int)($stmt->fetchColumn() ?: 100);
         var z = <?= $user_zoom ?>;
         document.documentElement.style.zoom = z + '%';
     })();
+
+    function toggleMenu() {
+        var menu = document.getElementById('navMenu');
+        menu.classList.toggle('active');
+    }
+
+    // Close menu when a link is clicked
+    document.addEventListener('DOMContentLoaded', function() {
+        var links = document.querySelectorAll('#navMenu a');
+        links.forEach(function(link) {
+            link.addEventListener('click', function() {
+                document.getElementById('navMenu').classList.remove('active');
+            });
+        });
+    });
 </script>
 
 <div class="navbar">
     <div class="brand"><a href="dashboard.php" style="margin:0;">Dashboard</a></div>
-    <div class="nav-links">
+    <button class="hamburger" onclick="toggleMenu()">☰</button>
+    <div class="nav-menu" id="navMenu">
         <a href="dashboard.php">Dashboard</a>
         <a href="invoice_create.php?new=1">Create Invoice</a>
         <a href="invoices.php">Invoices</a>
