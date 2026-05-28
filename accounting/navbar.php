@@ -67,8 +67,6 @@ if ($_SESSION['acc_role'] === 'admin') {
 
 ?>
 <style>
-    * { box-sizing: border-box; }
-    
     .navbar { 
         background: #0056b3; 
         padding: 0; 
@@ -80,7 +78,7 @@ if ($_SESSION['acc_role'] === 'admin') {
         top: 0; 
         z-index: 1000;
         min-height: 50px;
-        zoom: 100% !important;
+        width: 100%;
     }
     
     .navbar-brand { 
@@ -95,20 +93,13 @@ if ($_SESSION['acc_role'] === 'admin') {
         text-decoration: none; 
     }
     
-    .navbar-brand a:hover { 
-        text-decoration: underline; 
-    }
-    
     .hamburger { 
-        display: none; 
         background: none; 
         border: none; 
         color: white; 
         font-size: 28px; 
         cursor: pointer; 
         padding: 10px 15px; 
-        width: auto; 
-        height: auto;
         flex-shrink: 0;
     }
     
@@ -155,7 +146,6 @@ if ($_SESSION['acc_role'] === 'admin') {
     
     .nav-menu .btn-logout:hover { 
         background: #c9302c; 
-        text-decoration: none; 
     }
     
     .zoom-controls { 
@@ -179,7 +169,6 @@ if ($_SESSION['acc_role'] === 'admin') {
         align-items: center; 
         justify-content: center; 
         padding: 0; 
-        transition: background 0.15s; 
     }
     
     .zoom-btn:hover { 
@@ -193,7 +182,59 @@ if ($_SESSION['acc_role'] === 'admin') {
         text-align: center; 
     }
 
-    /* Desktop - show all links */
+    /* MOBILE FIRST - Default to mobile layout */
+    .hamburger { 
+        display: flex !important; 
+    }
+    
+    .nav-menu { 
+        position: fixed !important; 
+        top: 50px; 
+        left: 0; 
+        right: 0; 
+        background: #004494; 
+        flex-direction: column; 
+        align-items: stretch; 
+        max-height: 0 !important; 
+        overflow: hidden !important; 
+        transition: max-height 0.3s ease; 
+        z-index: 999;
+        gap: 0;
+    }
+    
+    .nav-menu.active { 
+        max-height: 600px !important; 
+        overflow-y: auto !important; 
+    }
+    
+    .nav-menu a { 
+        padding: 14px 15px; 
+        border-bottom: 1px solid rgba(255,255,255,0.1); 
+        font-size: 15px;
+        margin: 0;
+    }
+    
+    .nav-menu .user-info { 
+        padding: 14px 15px; 
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        margin: 0;
+    }
+    
+    .nav-menu .btn-logout { 
+        padding: 14px 15px; 
+        border-radius: 0; 
+        margin: 0;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .zoom-controls { 
+        padding: 14px 15px; 
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        margin-left: 0;
+        justify-content: flex-start;
+    }
+
+    /* DESKTOP - Show all links */
     @media (min-width: 769px) {
         .hamburger { 
             display: none !important; 
@@ -204,6 +245,7 @@ if ($_SESSION['acc_role'] === 'admin') {
             max-height: none !important;
             overflow: visible !important;
             background: transparent !important;
+            flex-direction: row !important;
         }
         
         .nav-menu a { 
@@ -211,80 +253,19 @@ if ($_SESSION['acc_role'] === 'admin') {
             font-size: 14px;
             border: none !important;
         }
-    }
-
-    /* Mobile - hamburger menu */
-    @media (max-width: 768px) {
-        .hamburger { 
-            display: flex !important; 
-        }
-        
-        .nav-menu { 
-            position: fixed !important; 
-            top: 50px; 
-            left: 0; 
-            right: 0; 
-            background: #004494; 
-            flex-direction: column; 
-            align-items: stretch; 
-            max-height: 0 !important; 
-            overflow: hidden !important; 
-            transition: max-height 0.3s ease; 
-            z-index: 999;
-            gap: 0;
-        }
-        
-        .nav-menu.active { 
-            max-height: 600px !important; 
-            overflow-y: auto !important; 
-        }
-        
-        .nav-menu a { 
-            padding: 14px 15px; 
-            border-bottom: 1px solid rgba(255,255,255,0.1); 
-            font-size: 15px;
-            margin: 0;
-        }
-        
-        .nav-menu a:hover { 
-            background: rgba(255,255,255,0.15); 
-        }
         
         .nav-menu .user-info { 
-            padding: 14px 15px; 
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            margin: 0;
+            border: none !important;
         }
         
         .nav-menu .btn-logout { 
-            padding: 14px 15px; 
-            border-radius: 0; 
-            margin: 0;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border: none !important;
+            margin: 0 12px;
         }
         
         .zoom-controls { 
-            padding: 14px 15px; 
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            margin-left: 0;
-            justify-content: flex-start;
-        }
-    }
-
-    @media (max-width: 480px) {
-        .navbar-brand { 
-            padding: 10px 12px; 
-            font-size: 16px; 
-        }
-        
-        .hamburger { 
-            padding: 8px 12px; 
-            font-size: 24px; 
-        }
-        
-        .nav-menu a { 
-            padding: 12px 15px; 
-            font-size: 14px;
+            border: none !important;
+            margin-left: auto;
         }
     }
 </style>
