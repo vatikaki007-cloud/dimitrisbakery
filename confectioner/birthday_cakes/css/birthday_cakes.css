@@ -46,10 +46,10 @@ body { margin: 0; font-family: 'Source Sans 3', sans-serif; color: #333; line-he
     .nav-links { justify-content: center; flex-wrap: wrap; }
 }
 
-/* --- WEDDING CAKES PAGE --- */
+/* --- BIRTHDAY CAKES PAGE --- */
 .birthday-hero {
     height: 400px;
-    background-image: url('../../../confectioner_images/birthday_hero.jpg');
+    background-image: url('../images/bc_hero.jpg');
     background-size: cover;
     background-position: center;
     position: relative;

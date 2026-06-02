@@ -74,7 +74,7 @@ define('SITE_ASSETS', [
     'hero_birthday' => [
         'name' => 'Hero Banner - Birthday Cakes',
         'desc' => 'The large background image at the top of the Birthday Cakes page.',
-        'path' => '/confectioner_images/birthday_hero.jpg',
+        'path' => '/confectioner/birthday_cakes/images/bc_hero.jpg',
     ],
     'hero_sweets' => [
         'name' => 'Hero Banner - Sweet Treats',
