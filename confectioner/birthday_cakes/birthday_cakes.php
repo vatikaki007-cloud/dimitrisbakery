@@ -37,35 +37,6 @@ $db_config_path = __DIR__ . '/../../cms/config.php';
     .then(html => { document.getElementById('global-nav').innerHTML = html; })
     .catch(err => console.error('Failed to load global nav:', err));
 </script>
-  <div class="container header-grid">
-    <a href="../../index.html" class="logo-link">
-      <img src="../../index_images/logo.png" alt="Dimitri's Bakery Logo" class="nav-logo">
-    </a>
-    <div class="nav-group">
-      <nav>
-        <ul class="nav-links">
-          <li><a href="../../index.html">Home</a></li>
-          <li><a href="../../weekley_menu/weekly_menu.html">Weekly Menu's</a></li>
-          <li class="dropdown">
-            <a href="../../confectioner.html" class="dropbtn">Confectioner</a>
-            <div class="dropdown-content">
-              <a href="../sweet_treats/sweet_treats.php">Dimitri's Sweet Treats</a>
-              <a href="../any_occasion/any_occasion.php">Any Occasion Cakes</a>
-              <a href="../wedding_cakes/wedding_cakes.php">Wedding Cakes</a>
-              <a href="../birthday_cakes/birthday_cakes.php">Birthday Cakes</a>
-            </div>
-          </li>
-          <li><a href="../../catering/catering.php">Catering</a></li>
-        </ul>
-      </nav>
-      <div class="header-contact">
-        <span class="phone-link">079 981 5410</span>
-        <a href="https://wa.me/27799815410" target="_blank" class="whatsapp-link" style="color: #25D366; text-decoration: none; font-weight: bold; margin-left: 10px;">Chat on WhatsApp</a>
-        <span class="contact-label">Contact Dimitri's Bakery</span>
-      </div>
-    </div>
-  </div>
-</header>
 
 <main>
   <!-- HERO SECTION -->
