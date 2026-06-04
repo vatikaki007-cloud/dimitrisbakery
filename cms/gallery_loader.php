@@ -46,8 +46,8 @@ try {
     $cms_photos = [];
 }
 
-// For weekly_menu on Monday with no recent images, show random default image
-if ($page_slug === 'weekly_menu' && date('N') == 1 && empty($cms_photos)) {
+// For weekly_menu, if no images, show random default image
+if ($page_slug === 'weekly_menu' && empty($cms_photos)) {
     // Get default images from weekley_menu/images/ folder
     $default_images_dir = __DIR__ . '/../weekley_menu/images/';
     
