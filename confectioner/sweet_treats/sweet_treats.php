@@ -15,6 +15,30 @@ $db_config_path = __DIR__ . '/../../cms/config.php';
   <meta property="og:title" content="Sweet Treats &amp; Confectionery | Dimitri's Bakery">
   <meta property="og:description" content="A wide variety of delicious sweet treats and confectionery. Perfect for any sweet tooth.">
   <meta property="og:image" content="https://dimitrisbakery.co.za/confectioner/sweet_treats/images/st1.jpg">
+  
+  <!-- Schema.org JSON-LD for Sweet Treats -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Dimitri's Bakery - Sweet Treats",
+    "image": "https://dimitrisbakery.co.za/confectioner/sweet_treats/images/st1.jpg",
+    "@id": "https://dimitrisbakery.co.za/confectioner/sweet_treats/sweet_treats.php",
+    "url": "https://dimitrisbakery.co.za/confectioner/sweet_treats/sweet_treats.php",
+    "telephone": "0798815410",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Parow",
+      "addressLocality": "Cape Town",
+      "addressRegion": "Western Cape",
+      "postalCode": "7500",
+      "addressCountry": "ZA"
+    },
+    "priceRange": "R 50 - R 500",
+    "description": "Delicious sweet treats, confectionery, fancies, and artisan biscuits"
+  }
+  </script>
+
   <link rel="stylesheet" href="../../css/global.css">
   <link rel="stylesheet" href="css/sweet_treats.css">
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Source+Sans+3:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -45,12 +69,14 @@ $db_config_path = __DIR__ . '/../../cms/config.php';
   </section>
 
   <section class="container sweet-treats-content">
+    <h2>Sweet Treats and Confectionery in Cape Town</h2>
     <p>Indulge in a world of <strong>delicious desserts with Dimitri's Sweet Treats in Parow, Cape Town</strong>. From <strong>fancies, bento cakes, cake pops, dessert platters, and more</strong>, we craft treats that are perfect for any celebration or just a sweet indulgence.</p>
     <p>Whether you're planning a <strong>birthday, baby shower, corporate event, or casual gathering</strong>, Dimitri's Sweet Treats provides <strong>customized desserts to match your theme, colors, and preferences</strong>.</p>
     <p>📍 Serving all of <strong>Parow, Cape Town, and surrounding areas</strong>. Contact us today to explore our <strong>sweet treats menu</strong> and order your next dessert masterpiece!</p>
   </section>
 
   <section class="sweet-treats-gallery">
+    <h2>Sweet Treats Gallery</h2>
     <div class="gallery-grid">
       <?php include __DIR__ . '/../../cms/gallery_loader.php'; ?>
     </div>

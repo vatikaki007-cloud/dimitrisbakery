@@ -15,6 +15,30 @@ $db_config_path = __DIR__ . '/../../cms/config.php';
   <meta property="og:title" content="Custom Wedding Cakes | Dimitri's Bakery">
   <meta property="og:description" content="Stunning wedding cakes for your special day. Custom designs and exquisite flavors.">
   <meta property="og:image" content="https://dimitrisbakery.co.za/confectioner/wedding_cakes/images/wc1.jpg">
+  
+  <!-- Schema.org JSON-LD for Wedding Cakes -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Dimitri's Bakery - Wedding Cakes",
+    "image": "https://dimitrisbakery.co.za/confectioner/wedding_cakes/images/wc1.jpg",
+    "@id": "https://dimitrisbakery.co.za/confectioner/wedding_cakes/wedding_cakes.php",
+    "url": "https://dimitrisbakery.co.za/confectioner/wedding_cakes/wedding_cakes.php",
+    "telephone": "0798815410",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Parow",
+      "addressLocality": "Cape Town",
+      "addressRegion": "Western Cape",
+      "postalCode": "7500",
+      "addressCountry": "ZA"
+    },
+    "priceRange": "R 900 - R 5000",
+    "description": "Custom wedding cakes tailored to your special day"
+  }
+  </script>
+
   <link rel="stylesheet" href="css/wedding_cakes.css">
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Source+Sans+3:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="../../index_images/logo.png">
@@ -44,10 +68,13 @@ $db_config_path = __DIR__ . '/../../cms/config.php';
   </section>
 
   <section class="container wedding-content">
+    <h2>Custom Wedding Cakes in Cape Town</h2>
     <p>Celebrate your special day with a handcrafted <strong>wedding cake</strong> from <strong>Dimitri's Bakery</strong> in <strong>Parow, Cape Town</strong>. Our expert bakers specialize in creating <strong>custom wedding cakes</strong> that are as beautiful as they are delicious.</p>
     <p>At Dimitri's Bakery, we use only the finest ingredients to ensure your <strong>wedding cake not only looks stunning but tastes unforgettable</strong>. Whether you prefer a <strong>traditional fruit cake, decadent chocolate, vanilla sponge, or a fusion of flavors</strong>, our team will design the perfect centerpiece for your celebration.</p>
     <p>Serving couples throughout <strong>Parow, Cape Town, and surrounding areas</strong>, Dimitri's Bakery is trusted for its <strong>personalized service, attention to detail, and exquisite cake artistry</strong>.</p>
     <p>📍 Visit us in Parow, Cape Town, or contact us today to book a <strong>wedding cake consultation</strong>.</p>
+    
+    <h2>Wedding Cake Pricing</h2>
     <div class="pricing-list">
       <p>Pricing starts from:</p>
       <p class="pricing-item">1 Tier – R 900.00</p>
@@ -57,6 +84,7 @@ $db_config_path = __DIR__ . '/../../cms/config.php';
   </section>
 
   <section class="wedding-gallery">
+    <h2>Our Wedding Cake Gallery</h2>
     <div class="gallery-grid">
       <?php include __DIR__ . '/../../cms/gallery_loader.php'; ?>
     </div>

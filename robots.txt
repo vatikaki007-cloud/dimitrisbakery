@@ -1,0 +1,13 @@
+# Dimitri's Bakery - robots.txt
+# Allow all search engines to crawl the website
+
+User-agent: *
+Allow: /
+
+# Disallow CMS admin and sensitive areas
+Disallow: /cms/admin/
+Disallow: /cms/uploads/
+Disallow: /accounting/
+
+# Point to sitemap
+Sitemap: https://dimitrisbakery.co.za/sitemap.xml

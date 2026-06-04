@@ -30,3 +30,22 @@ Fix the banner layout in sweet_treats.html so that the text is wrapped in the ex
 
 Do not modify or mention the background image file itself. Strictly output the required file changes following the rule to display them with their absolute path, one per row.
 
+
+
+Create a wide website hero banner for any occasion cakes, strictly matching the art style of the attached confectioner reference. 
+
+
+
+A panoramic, wide aspect ratio website hero banner 16:9.
+
+
+
+[STYLE]: Vintage hand-drawn engraving and fine ink pen etching. Use delicate cross-hatching and fine sketch lines to define textures. Overlay a very soft, desaturated watercolor wash over the illustrations.
+
+[BACKGROUND]: A wide, continuous rustic textured light beige parchment paper background stretching fully across the canvas.
+
+[SUBJECT]: Top-down, overhead view of any occasion cakes (any occasion cakes is a mix of birthday and wedding cakes etc - screenshot 3) arranged along the far left and far right edges of the canvas only. The center 50% of the image must be completely empty parchment paper for text placement. 
+
+[COLOR PALETTE]: Muted, earthy tones. Warm browns, creams, and very soft pastel accents.
+
+[GUARDRAILS]: Aspect ratio is wide banner (16:9). The artwork must bleed to the absolute edges. No square frames, no borders, and zero black letterbox margins at the sides, top, or bottom.

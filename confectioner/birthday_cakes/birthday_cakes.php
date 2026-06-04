@@ -23,6 +23,29 @@ $db_config_path = __DIR__ . '/../../cms/config.php';
   <meta property="og:description" content="Personalized birthday cakes for every age and style. Delicious and beautiful.">
   <meta property="og:image" content="https://dimitrisbakery.co.za/confectioner/birthday_cakes/images/bc1.jpg">
 
+  <!-- Schema.org JSON-LD for Birthday Cakes -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Dimitri's Bakery - Birthday Cakes",
+    "image": "https://dimitrisbakery.co.za/confectioner/birthday_cakes/images/bc1.jpg",
+    "@id": "https://dimitrisbakery.co.za/confectioner/birthday_cakes/birthday_cakes.php",
+    "url": "https://dimitrisbakery.co.za/confectioner/birthday_cakes/birthday_cakes.php",
+    "telephone": "0798815410",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Parow",
+      "addressLocality": "Cape Town",
+      "addressRegion": "Western Cape",
+      "postalCode": "7500",
+      "addressCountry": "ZA"
+    },
+    "priceRange": "R 300 - R 2000",
+    "description": "Custom birthday cakes for all ages and celebrations"
+  }
+  </script>
+
   <link rel="stylesheet" href="css/birthday_cakes.css">
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Source+Sans+3:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="../../index_images/logo.png">
@@ -62,6 +85,7 @@ $db_config_path = __DIR__ . '/../../cms/config.php';
 
   <!-- GALLERY SECTION -->
   <section class="birthday-gallery">
+    <h2>Birthday Cake Gallery</h2>
     <div class="gallery-grid">
       <!-- CMS-managed photos (appended dynamically from database) -->
       <?php include $db_config_path !== false ? __DIR__ . '/../../cms/gallery_loader.php' : ''; ?>

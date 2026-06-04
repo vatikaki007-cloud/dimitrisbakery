@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Homepage -->
+  <url>
+    <loc>https://dimitrisbakery.co.za/index.html</loc>
+    <lastmod>2026-06-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Weekly Menu -->
+  <url>
+    <loc>https://dimitrisbakery.co.za/weekley_menu/weekly_menu.html</loc>
+    <lastmod>2026-06-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Confectioner Main -->
+  <url>
+    <loc>https://dimitrisbakery.co.za/confectioner.html</loc>
+    <lastmod>2026-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Wedding Cakes -->
+  <url>
+    <loc>https://dimitrisbakery.co.za/confectioner/wedding_cakes/wedding_cakes.php</loc>
+    <lastmod>2026-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Birthday Cakes -->
+  <url>
+    <loc>https://dimitrisbakery.co.za/confectioner/birthday_cakes/birthday_cakes.php</loc>
+    <lastmod>2026-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Any Occasion Cakes -->
+  <url>
+    <loc>https://dimitrisbakery.co.za/confectioner/any_occasion/any_occasion.php</loc>
+    <lastmod>2026-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Sweet Treats -->
+  <url>
+    <loc>https://dimitrisbakery.co.za/confectioner/sweet_treats/sweet_treats.php</loc>
+    <lastmod>2026-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Catering -->
+  <url>
+    <loc>https://dimitrisbakery.co.za/catering/catering.php</loc>
+    <lastmod>2026-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+</urlset>

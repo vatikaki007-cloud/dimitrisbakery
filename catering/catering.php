@@ -15,6 +15,30 @@ $db_config_path = __DIR__ . '/../cms/config.php';
   <meta property="og:title" content="Turnkey Catering Services | Dimitri's Bakery">
   <meta property="og:description" content="Professional catering services for weddings, parties, and corporate events. Quality food you can trust.">
   <meta property="og:image" content="https://dimitrisbakery.co.za/index_images/logo.png">
+  
+  <!-- Schema.org JSON-LD for Catering -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Dimitri's Bakery - Catering Services",
+    "image": "https://dimitrisbakery.co.za/index_images/logo.png",
+    "@id": "https://dimitrisbakery.co.za/catering/catering.php",
+    "url": "https://dimitrisbakery.co.za/catering/catering.php",
+    "telephone": "0798815410",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Parow",
+      "addressLocality": "Cape Town",
+      "addressRegion": "Western Cape",
+      "postalCode": "7500",
+      "addressCountry": "ZA"
+    },
+    "priceRange": "R 500 - R 10000",
+    "description": "Professional turnkey catering services for weddings, corporate events, and private parties in Cape Town"
+  }
+  </script>
+
   <link rel="stylesheet" href="css/catering.css">
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Source+Sans+3:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="../index_images/logo.png">
@@ -44,12 +68,14 @@ $db_config_path = __DIR__ . '/../cms/config.php';
   </section>
 
   <section class="container catering-content">
+    <h2>Professional Catering Services in Cape Town</h2>
     <p>Make your event unforgettable with <strong>Dimitri's Catering in Parow, Cape Town</strong>. From <strong>gourmet platters to full-scale catering</strong>, we provide delicious, high-quality food for <strong>corporate events, private parties, and special celebrations</strong>.</p>
     <p>We offer <strong>customizable menus</strong> to suit your event's style and budget, ensuring every detail is covered. From <strong>finger foods and snack platters to full meals and desserts</strong>, our catering service takes the stress out of planning.</p>
     <p>📍 Serving <strong>Parow and surrounding Cape Town suburbs</strong>. Contact us today to discuss your <strong>catering requirements</strong>.</p>
   </section>
 
   <section class="catering-gallery">
+    <h2>Catering Gallery</h2>
     <div class="gallery-grid">
       <?php include __DIR__ . '/../cms/gallery_loader.php'; ?>
     </div>
