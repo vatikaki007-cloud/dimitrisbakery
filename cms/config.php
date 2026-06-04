@@ -31,6 +31,7 @@ define('GALLERY_PAGES', [
     'sweet_treats' => 'Sweet Treats',
     'any_occasion' => 'Any Occasion Cakes',
     'catering' => 'Catering',
+    'specials' => 'Specials',
 ]);
 
 // --- Site Assets (Static Images Manager) ---

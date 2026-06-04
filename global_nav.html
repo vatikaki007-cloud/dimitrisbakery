@@ -28,6 +28,8 @@
                 </li>
                 <li role="none"><a href="https://dimitrisbakery.co.za/catering/catering.php"
                         role="menuitem">Catering</a></li>
+                <li role="none"><a href="https://dimitrisbakery.co.za/specials/specials.php" id="specials-link"
+                        role="menuitem" style="display:none;">Specials</a></li>
             </ul>
         </nav>
         <!-- Contact Info -->
@@ -42,3 +44,15 @@
         </div>
     </div>
 </header>
+
+<!-- Script to show/hide Specials link based on uploaded images -->
+<script>
+fetch('https://dimitrisbakery.co.za/cms/check_specials.php')
+    .then(r => r.json())
+    .then(data => {
+        if (data.hasSpecials) {
+            document.getElementById('specials-link').style.display = 'inline';
+        }
+    })
+    .catch(err => console.error('Failed to check specials:', err));
+</script>
