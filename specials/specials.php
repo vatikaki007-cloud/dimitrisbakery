@@ -167,43 +167,5 @@ $db_config_path = __DIR__ . '/../cms/config.php';
   </div>
 </footer>
 
-<!-- Image Modal for Fullscreen View -->
-<div id="imageModal" class="modal">
-  <span class="close">&times;</span>
-  <img class="modal-content" id="modalImage">
-  <div id="caption" style="display:none;"></div>
-</div>
-
-<script>
-// Modal functionality for image enlargement
-var modal = document.getElementById("imageModal");
-var modalImg = document.getElementById("modalImage");
-var captionText = document.getElementById("caption");
-
-// Get all gallery images
-var galleryImages = document.querySelectorAll('.gallery-grid img');
-
-galleryImages.forEach(function(img) {
-  img.onclick = function() {
-    modal.style.display = "block";
-    modalImg.src = this.src;
-    captionText.textContent = this.alt;
-  };
-});
-
-// Close modal when X is clicked
-var span = document.getElementsByClassName("close")[0];
-span.onclick = function() {
-  modal.style.display = "none";
-};
-
-// Close modal when clicking outside the image
-modal.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-};
-</script>
-
 </body>
 </html>
