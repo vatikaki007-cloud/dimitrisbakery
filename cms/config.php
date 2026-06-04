@@ -58,6 +58,11 @@ define('SITE_ASSETS', [
         'desc' => 'The background image for the weekly meals section.',
         'path' => '/index_images/index3.png',
     ],
+    'hero_weekly' => [
+        'name' => 'Hero Banner - Weekly Menu',
+        'desc' => 'The large background image at the top of the Weekly Menu page.',
+        'path' => '/weekley_menu/images/weekly_menu_hero.jpg',
+    ],
     'hero_confectioner' => [
         'name' => 'Hero Banner - Confectioner Main',
         'desc' => 'The large background image at the top of the main Confectioner page.',
