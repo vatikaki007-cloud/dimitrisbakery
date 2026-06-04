@@ -34,8 +34,11 @@ $db_config_path = __DIR__ . '/../cms/config.php';
 <main>
   <section class="catering-hero">
     <div class="catering-hero-overlay">
-      <div class="container">
-        <h1 class="catering-title">Catering</h1>
+      <div class="conf-title-badge">
+        <span class="conf-subtitle">Event Services</span>
+        <h1 class="conf-page-title">Catering</h1>
+        <div class="conf-divider"></div>
+        <p class="conf-desc">Professional catering for every occasion</p>
       </div>
     </div>
   </section>
