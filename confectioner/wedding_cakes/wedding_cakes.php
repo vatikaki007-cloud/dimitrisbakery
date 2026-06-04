@@ -34,8 +34,11 @@ $db_config_path = __DIR__ . '/../../cms/config.php';
 <main>
   <section class="wedding-hero">
     <div class="wedding-hero-overlay">
-      <div class="container">
-        <h1 class="wedding-title">Wedding Cakes</h1>
+      <div class="conf-title-badge">
+        <span class="conf-subtitle">Elegant Celebrations</span>
+        <h1 class="conf-page-title">Wedding Cakes</h1>
+        <div class="conf-divider"></div>
+        <p class="conf-desc">The perfect centerpiece for your special day</p>
       </div>
     </div>
   </section>
