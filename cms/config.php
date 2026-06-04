@@ -32,6 +32,7 @@ define('GALLERY_PAGES', [
     'any_occasion' => 'Any Occasion Cakes',
     'catering' => 'Catering',
     'specials' => 'Specials',
+    'weekly_menu' => 'Weekly Menu',
 ]);
 
 // --- Site Assets (Static Images Manager) ---
@@ -56,16 +57,6 @@ define('SITE_ASSETS', [
         'name' => 'Home - Home Cooked Meals',
         'desc' => 'The background image for the weekly meals section.',
         'path' => '/index_images/index3.png',
-    ],
-    'weekly_menu' => [
-        'name' => 'Weekly Menu Image',
-        'desc' => 'The actual menu image displayed on the Weekly Menus page.',
-        'path' => '/weekley_menu/images/menu.jpg',
-    ],
-    'hero_weekly' => [
-        'name' => 'Hero Banner - Weekly Menu',
-        'desc' => 'The large background image at the top of the Weekly Menus page.',
-        'path' => '/weekley_menu/images/weekly_menu_hero.jpg',
     ],
     'hero_confectioner' => [
         'name' => 'Hero Banner - Confectioner Main',

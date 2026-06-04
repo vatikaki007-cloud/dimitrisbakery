@@ -39,12 +39,10 @@ body { margin: 0; font-family: 'Source Sans 3', sans-serif; color: #333; line-he
 
 /* --- WEEKLY MENU PAGE --- */
 .menu-hero {
-    height: 600px;
+    height: 400px;
     background-image: url('../images/weekly_menu_hero.jpg');
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
-    background-color: #fff;
     position: relative;
     display: flex;
     align-items: center;
@@ -52,7 +50,7 @@ body { margin: 0; font-family: 'Source Sans 3', sans-serif; color: #333; line-he
 }
 
 .menu-hero-overlay {
-    background: rgba(255, 255, 255, 0.2); /* Much lighter overlay */
+    background: rgba(0, 0, 0, 0.4);
     width: 100%;
     height: 100%;
     display: flex;
@@ -60,27 +58,45 @@ body { margin: 0; font-family: 'Source Sans 3', sans-serif; color: #333; line-he
     justify-content: center;
 }
 
-.menu-box {
-    background: #ffffff;
-    padding: 85px 60px;
-    min-width: 450px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+/* White rectangle badge for menu hero */
+.conf-title-badge {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 40px 60px;
     text-align: center;
+    border: 1px solid #ddd;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    display: inline-block;
 }
 
-.menu-title {
+.conf-subtitle {
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 10px;
+}
+
+.conf-page-title {
     font-family: 'Outfit', sans-serif;
-    font-size: 52px;
     color: #111;
+    font-size: 52px;
     margin: 0;
     line-height: 1;
-    text-shadow: none;
-    text-align: center;
+}
+
+.conf-divider {
+    width: 50px;
+    height: 2px;
+    background-color: #007bff;
+    margin: 20px auto;
+}
+
+.conf-desc {
+    font-style: italic;
+    color: #555;
+    margin: 0;
 }
 
 .menu-content {
@@ -97,30 +113,116 @@ body { margin: 0; font-family: 'Source Sans 3', sans-serif; color: #333; line-he
     margin-bottom: 20px;
 }
 
-.menu-display {
-    text-align: center;
-    padding-bottom: 80px;
+.menu-content strong {
+    color: #222;
 }
 
-.menu-image {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+/* --- GALLERY --- */
+.menu-gallery {
+    width: 100%;
+    padding: 0 20px 80px 20px;
+    box-sizing: border-box;
 }
 
-.order-button-container {
-    margin-top: 40px;
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 15px;
+    width: 100%;
 }
 
-.btn-primary {
-    display: inline-block;
-    background-color: #009cf0;
-    color: #fff;
-    padding: 12px 24px;
-    text-decoration: none;
+.gallery-item {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
     border-radius: 4px;
+    display: block;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.gallery-item:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 12px rgba(0,0,0,0.15);
+}
+
+/* --- MODAL FOR FULLSCREEN IMAGE --- */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding-top: 50px;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 80vh;
+    object-fit: contain;
+    animation: zoomIn 0.3s ease;
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.8); }
+    to { transform: scale(1); }
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    color: #f1f1f1;
+    font-size: 40px;
     font-weight: bold;
-    font-family: 'Source Sans 3', sans-serif;
-    font-size: 16px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+}
+
+#caption {
+    display: none;
+    margin: auto;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+}
+
+/* --- CATEGORY NAVIGATION GRID --- */
+.conf-grid-section { padding: 60px 0; border-top: 1px solid #eee; margin-top: 40px; }
+.conf-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin: 0 auto; }
+@media (max-width: 900px) { .conf-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .conf-grid { grid-template-columns: 1fr; } }
+.conf-item { text-align: center; }
+.conf-item img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 4px; margin-bottom: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+.btn-category { display: inline-block; background-color: #007bff; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 4px; font-weight: bold; font-family: 'Source Sans 3', sans-serif; transition: background-color 0.3s; }
+.btn-category:hover { background-color: #0056b3; }
+
+.order-button-container { text-align: center; margin-top: 40px; margin-bottom: 20px; }
+.btn-primary { display: inline-block; background-color: #007bff; color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; transition: background-color 0.3s; }
+.btn-primary:hover { background-color: #0056b3; }
+
+/* --- 4. RESPONSIVE DESIGN FOR HEADER/FOOTER --- */
+@media (max-width: 900px) {
+    .footer-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+}
+@media (max-width: 768px) {
+    .header-grid { flex-direction: column; text-align: center; }
+    .nav-links { justify-content: center; flex-wrap: wrap; }
 }
