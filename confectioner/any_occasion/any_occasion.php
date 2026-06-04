@@ -34,8 +34,11 @@ $db_config_path = __DIR__ . '/../../cms/config.php';
 <main>
   <section class="any-occasion-hero">
     <div class="any-occasion-hero-overlay">
-      <div class="container">
-        <h1 class="any-occasion-title">Any Occasion Cakes</h1>
+      <div class="conf-title-badge">
+        <span class="conf-subtitle">Special Occasions</span>
+        <h1 class="conf-page-title">Any Occasion Cakes</h1>
+        <div class="conf-divider"></div>
+        <p class="conf-desc">Celebrate every milestone with us</p>
       </div>
     </div>
   </section>
