@@ -42,8 +42,11 @@ $db_config_path = __DIR__ . '/../../cms/config.php';
   <!-- HERO SECTION -->
   <section class="birthday-hero">
     <div class="birthday-hero-overlay">
-      <div class="container">
-        <h1 class="birthday-title">Birthday Cakes</h1>
+      <div class="conf-title-badge">
+        <span class="conf-subtitle">Fun & Delicious</span>
+        <h1 class="conf-page-title">Birthday Cakes</h1>
+        <div class="conf-divider"></div>
+        <p class="conf-desc">Make every celebration unforgettable</p>
       </div>
     </div>
   </section>
