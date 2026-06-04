@@ -49,7 +49,7 @@ body { margin: 0; font-family: 'Source Sans 3', sans-serif; color: #333; line-he
 /* --- WEDDING CAKES PAGE --- */
 .wedding-hero {
     height: 400px;
-    background-image: url('../images/wc1.jpg');
+    background-image: url('../images/wc_hero.jpg');
     background-size: cover;
     background-position: center;
     position: relative;

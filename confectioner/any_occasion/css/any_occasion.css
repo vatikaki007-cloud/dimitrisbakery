@@ -49,7 +49,7 @@ body { margin: 0; font-family: 'Source Sans 3', sans-serif; color: #333; line-he
 /* --- ANY OCCASION CAKES PAGE --- */
 .any-occasion-hero {
     height: 400px;
-    background-image: url('../../../confectioner_images/any_occasion_hero.jpg');
+    background-image: url('../images/ao_hero.jpg');
     background-size: cover;
     background-position: center;
     position: relative;

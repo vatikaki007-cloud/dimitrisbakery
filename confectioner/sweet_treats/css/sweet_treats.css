@@ -25,7 +25,7 @@
 /* --- SWEET TREATS PAGE --- */
 .sweet-treats-hero {
     height: 400px;
-    background-image: url('../../../confectioner_images/sweet_treats_hero.jpg');
+    background-image: url('../images/st_hero.jpg');
     background-size: cover;
     background-position: center;
     position: relative;

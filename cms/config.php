@@ -76,20 +76,25 @@ define('SITE_ASSETS', [
         'desc' => 'The large background image at the top of the Birthday Cakes page.',
         'path' => '/confectioner/birthday_cakes/images/bc_hero.jpg',
     ],
+    'hero_wedding' => [
+        'name' => 'Hero Banner - Wedding Cakes',
+        'desc' => 'The large background image at the top of the Wedding Cakes page.',
+        'path' => '/confectioner/wedding_cakes/images/wc_hero.jpg',
+    ],
     'hero_sweets' => [
         'name' => 'Hero Banner - Sweet Treats',
         'desc' => 'The large background image at the top of the Sweet Treats page.',
-        'path' => '/confectioner_images/sweet_treats_hero.jpg',
+        'path' => '/confectioner/sweet_treats/images/st_hero.jpg',
     ],
     'hero_occasion' => [
         'name' => 'Hero Banner - Any Occasion',
         'desc' => 'The large background image at the top of the Any Occasion Cakes page.',
-        'path' => '/confectioner_images/any_occasion_hero.jpg',
+        'path' => '/confectioner/any_occasion/images/ao_hero.jpg',
     ],
     'hero_catering' => [
         'name' => 'Hero Banner - Catering',
         'desc' => 'The large background image at the top of the Catering page.',
-        'path' => '/catering_images/catering_hero.jpg',
+        'path' => '/catering/images/catering_hero.jpg',
     ],
     'cat_wedding' => [
         'name' => 'Category Image - Wedding',

@@ -49,7 +49,7 @@ body { margin: 0; font-family: 'Source Sans 3', sans-serif; color: #333; line-he
 /* --- CATERING PAGE --- */
 .catering-hero {
     height: 400px;
-    background-image: url('../../catering_images/catering_hero.jpg');
+    background-image: url('../images/catering_hero.jpg');
     background-size: cover;
     background-position: center;
     position: relative;
