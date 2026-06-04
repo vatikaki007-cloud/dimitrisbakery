@@ -6,9 +6,9 @@
  * Include this file inside the .gallery-grid div on each gallery page.
  *
  * Special logic for weekly_menu:
- * - On Monday, only show images uploaded in the last 3 days
- * - If no valid images on Monday, show a random default image from weekley_menu/images/
- * - Other days show all images
+ * - Monday-Friday: Show menu only if uploaded after last Saturday
+ * - Saturday-Sunday: Show menu only if uploaded in last 2 days
+ * - If no valid images, show a random default image
  *
  * Usage:
  *   $page_slug = 'birthday_cakes';  // Set before including
@@ -28,13 +28,21 @@ require_once $db_config_path;
 try {
     $pdo  = get_db();
     
-    // For weekly_menu on Monday, add date filter (images from last 3 days only)
     $where_clause = 'page_slug = ?';
     $params = [$page_slug];
     
-    if ($page_slug === 'weekly_menu' && date('N') == 1) { // 1 = Monday
-        // Only show images from last 3 days on Mondays
-        $where_clause .= ' AND uploaded_at > DATE_SUB(NOW(), INTERVAL 3 DAY)';
+    if ($page_slug === 'weekly_menu') {
+        $current_day = date('N'); // 1=Monday, 6=Saturday, 7=Sunday
+        
+        if ($current_day >= 1 && $current_day <= 5) {
+            // Monday-Friday: Show menu if uploaded after last Saturday
+            // Last Saturday is 2 days ago on Mon, 3 days ago on Tue, 4 on Wed, 5 on Thurs, 6 on Fri
+            $days_since_last_saturday = $current_day + 1; // +1 because we want AFTER Saturday
+            $where_clause .= ' AND uploaded_at > DATE_SUB(NOW(), INTERVAL ' . $days_since_last_saturday . ' DAY)';
+        } else {
+            // Saturday-Sunday: Show menu only if uploaded in last 2 days (today or yesterday)
+            $where_clause .= ' AND uploaded_at > DATE_SUB(NOW(), INTERVAL 2 DAY)';
+        }
     }
     
     $stmt = $pdo->prepare(
@@ -46,7 +54,7 @@ try {
     $cms_photos = [];
 }
 
-// For weekly_menu, if no images, show random default image
+// If no valid images, show random default image
 if ($page_slug === 'weekly_menu' && empty($cms_photos)) {
     // Get default images from weekley_menu/images/ folder
     $default_images_dir = __DIR__ . '/../weekley_menu/images/';
@@ -57,30 +65,28 @@ if ($page_slug === 'weekly_menu' && empty($cms_photos)) {
             return in_array($ext, ['jpg', 'jpeg', 'png', 'gif', 'webp']);
         });
         
-        // Remove . and .. from array
+        // Remove . and .. from array and exclude hero/logo/menu files
         $files = array_values(array_filter($files, function($file) {
-            return $file !== '.' && $file !== '..';
+            if ($file === '.' || $file === '..') return false;
+            if (strpos($file, 'hero') !== false) return false;
+            if (strpos($file, 'logo') !== false) return false;
+            if (strpos($file, 'menu.jpg') !== false) return false;
+            return true;
         }));
         
         if (!empty($files)) {
             // Pick a random default image
             $random_image = $files[array_rand($files)];
-            $default_url = SITE_ROOT . '/weekley_menu/images/' . rawurlencode($random_image);
+            // Use relative path from site root (/weekley_menu/images/...) for better local/server compatibility
+            $default_url = '/weekley_menu/images/' . rawurlencode($random_image);
             $caption = htmlspecialchars(pathinfo($random_image, PATHINFO_FILENAME), ENT_QUOTES, 'UTF-8');
             
-            echo '<a href="' . $default_url . '" target="_blank">';
-            echo '<img src="' . $default_url . '" alt="' . $caption . '" class="gallery-item" loading="lazy">';
+            echo '<a href="' . htmlspecialchars($default_url, ENT_QUOTES, 'UTF-8') . '" target="_blank">';
+            echo '<img src="' . htmlspecialchars($default_url, ENT_QUOTES, 'UTF-8') . '" alt="' . $caption . '" class="gallery-item" loading="lazy">';
             echo '</a>';
             return;
         }
     }
-    
-    // No default images found, show message
-    echo '<div style="grid-column: 1/-1; text-align: center; padding: 40px 20px; color: #666;">';
-    echo '<p style="font-size: 18px; font-weight: bold;">Menu Coming Soon</p>';
-    echo '<p>We\'re preparing this week\'s menu. Please check back later!</p>';
-    echo '</div>';
-    return;
 }
 
 foreach ($cms_photos as $photo):

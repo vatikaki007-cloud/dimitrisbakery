@@ -124,22 +124,29 @@ body { margin: 0; font-family: 'Source Sans 3', sans-serif; color: #333; line-he
     box-sizing: border-box;
 }
 
+.menu-gallery h2 {
+    text-align: center;
+}
+
 .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    display: flex;
+    justify-content: center;
+    align-items: center;
     gap: 15px;
     width: 100%;
+    flex-wrap: wrap;
 }
 
 .gallery-item {
     width: 100%;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
+    height: auto;
+    object-fit: contain;
     border-radius: 4px;
     display: block;
     cursor: pointer;
     transition: transform 0.3s ease;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    max-width: 500px;
 }
 
 .gallery-item:hover {
