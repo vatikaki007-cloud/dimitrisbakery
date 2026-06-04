@@ -13,9 +13,13 @@ try {
     $stmt->execute(['specials']);
     $result = $stmt->fetch();
     
-    $hasSpecials = $result['count'] > 0;
+    $hasSpecials = ($result && $result['count'] > 0);
+    
+    // Debug: Log to error log if helpful
+    error_log('check_specials: hasSpecials=' . ($hasSpecials ? 'true' : 'false') . ', count=' . ($result['count'] ?? 0));
     
     echo json_encode(['hasSpecials' => $hasSpecials]);
 } catch (Exception $e) {
+    error_log('check_specials error: ' . $e->getMessage());
     echo json_encode(['hasSpecials' => false, 'error' => $e->getMessage()]);
 }

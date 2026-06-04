@@ -51,8 +51,25 @@ $db_config_path = __DIR__ . '/../../cms/config.php';
     .then(r => r.text())
     .then(html => {
       document.getElementById('global-nav').innerHTML = html;
+      // After nav is loaded, check if specials exist and show link
+      checkSpecialsLink();
     })
     .catch(err => console.error('Failed to load global nav:', err));
+
+  function checkSpecialsLink() {
+    fetch('/cms/check_specials.php')
+      .then(r => r.json())
+      .then(data => {
+        console.log('Specials check:', data);
+        if (data.hasSpecials) {
+          const link = document.getElementById('specials-link');
+          if (link) {
+            link.style.display = 'inline';
+          }
+        }
+      })
+      .catch(err => console.error('Failed to check specials:', err));
+  }
 </script>
 
 <main>
