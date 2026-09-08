@@ -31,8 +31,7 @@ try {
     $where_clause = 'page_slug = ?';
     $params = [$page_slug];
     
-    // For now, disable weekly_menu date validation to test default images
-    if (false && $page_slug === 'weekly_menu') {
+    if ($page_slug === 'weekly_menu') {
         $current_day = date('N'); // 1=Monday, 6=Saturday, 7=Sunday
         
         if ($current_day >= 1 && $current_day <= 5) {
