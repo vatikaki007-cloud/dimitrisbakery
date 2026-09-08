@@ -31,7 +31,8 @@ try {
     $where_clause = 'page_slug = ?';
     $params = [$page_slug];
     
-    if ($page_slug === 'weekly_menu') {
+    // For now, disable weekly_menu date validation to test default images
+    if (false && $page_slug === 'weekly_menu') {
         $current_day = date('N'); // 1=Monday, 6=Saturday, 7=Sunday
         
         if ($current_day >= 1 && $current_day <= 5) {
@@ -68,9 +69,11 @@ if ($page_slug === 'weekly_menu' && empty($cms_photos)) {
         // Remove . and .. from array and exclude hero/logo/menu files
         $files = array_values(array_filter($files, function($file) {
             if ($file === '.' || $file === '..') return false;
-            if (strpos($file, 'hero') !== false) return false;
-            if (strpos($file, 'logo') !== false) return false;
-            if (strpos($file, 'menu.jpg') !== false) return false;
+            $lower = strtolower($file);
+            if (strpos($lower, 'hero') !== false) return false;
+            if (strpos($lower, 'logo') !== false) return false;
+            if (strpos($lower, 'menu') !== false) return false;
+            if (strpos($lower, 'special') !== false) return false;
             return true;
         }));
         
